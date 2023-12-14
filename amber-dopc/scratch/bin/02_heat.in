@@ -1,0 +1,33 @@
+Heat
+ &cntrl
+  imin=0, 		! Not an energy minimization
+  ntx=1,		! option to read initial coords, velocities and box size from inpcrd file. 1 = cooords but not velocities. 5=coords and velocities
+  irest=0,		! flag to restart simulation. 0 = no restart but run as a new sim. 1 = it's a restart and timestep and velocities read in. 
+  nstlim=100,		! Number of MD steps to be perfomed. default = 1
+  dt=0.001,		! timstep (ps) max is 0.002 if SHAKE is used, or 0.001 if not. above 300K step size should be reduced. 
+			! H-Mass repartitioning and together with SHAKE allow time step to be increased in a stable fashion by x2 (up to 0.004) by slowing down freq of H motion
+  ntf=2,		! Force evailuation (=2 for hydrogen)
+  ntc=2,		! SHAKE constraints (=2 hydrogen)
+  tempi=0.0,		! initial temp. tempi has no effect if ntx=5
+  temp0=300.0,		! reference temp at which system is to be kept. above 300K reduce step size because of SHAKE
+  ntpr=100,		! mdout and mdinfo files are written every ntpr steps
+  ntwx=100,		! trajectory file written every ntpr steps
+  cut=8.0,		! cutoff for bonded interactions (angstrom) 
+  ntb=1,		! boundaries (1= constant volume)
+  ntp=0,		! constant pressure restraint (0= no pressure scaling, 1 = isotropic 2 = anisotropic)
+  ntt=3,		! temperature scaling (constant total energy, 1 = constant T, 2 anderson,  3= langevin dynamics) 
+  csurften=0,		! surface tension regulation (0=no constant) 1=constant on yz, 2=constant xz, 3=constant xy)
+  gamma_ln=2.0,		! surface tension value in dyne/cm default is 0. 
+  nmropt=1,		! nmr analysis (0 = no nmr type analysis will be done. NMR restraints and weight changes read... 
+			!NMR restraint, weight changes, NOESY volumes, chemical shifts and residue dipolar restraints will be read
+  ntc=2			! SHAKE bond length constraints. 1 is default (no SHAKE), 2=H bonds constrained, 3=all bonds constrained
+  ig=-1,		! seed for psuedo random number generatory. MD start velocity depends on it if tempi nonzero and ntx- 1... 
+			! also affects values used for langevin dynamics and andersen coupling. should be set to a different value on each restart.
+			! ig=-1 means it's based on date and time. don't change this unless you need reproducibility.
+ /
+&wt type='TEMP0', istep1=0, istep2=9000, value1=0.0, value2=300.0 /
+&wt type='TEMP0', istep1=9001, istep2=10000, value1=300.0, value2=300.0 /
+&wt type='END' /
+
+! istep is change applied over steps.iterations. if istep2=0 then change remains until end. 
+! this is heavily based on tutorial settings. you will need to change this for real runs.

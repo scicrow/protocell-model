@@ -1,0 +1,6 @@
+Thomas Crow 01/12/2023
+
+Just my bad attempt at writing pdb files from scratch. The formatting is a nightmare. 
+
+Taking info from:
+https://www.cgl.ucsf.edu/chimera/docs/UsersGuide/tutorials/pdbintro.html

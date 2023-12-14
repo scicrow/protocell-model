@@ -1,0 +1,54 @@
+============================================================================
+| ACPYPE: AnteChamber PYthon Parser interfacE v. 2023.10.27 (c) 2023 AWSdS |
+============================================================================
+DEBUG: CLI: -p dopc128x1_42w_lipid21.prmtop -x dopc128x1_42w_lipid21.inpcrd
+DEBUG: Python Version 3.11.6 | packaged by conda-forge | (main, Oct 3 2023, 10:40:35) [GCC 12.3.0]
+Converting Amber input files to Gromacs ...
+DEBUG: prmtop and inpcrd files loaded
+DEBUG: basename defined = 'dopc128x1_42w_lipid21'
+DEBUG: getCoords done
+DEBUG: getABCOEFs done
+DEBUG: charge to be balanced: total 0.0000014428
+DEBUG: balanceCharges done
+DEBUG: Balanced TotalCharge -0.0000000000
+DEBUG: PBC = [[68.9340019, 69.0060005, 98.0299988], [90.0, 90.0, 90.0]]
+DEBUG: getAtoms done
+DEBUG: getBonds done
+DEBUG: getAngles done
+DEBUG: getDihedrals done
+==> Writing GROMACS files
+
+==> Disambiguating lower and uppercase atomtypes in GMX top file, even if identical.
+
+DEBUG: writing GRO file
+DEBUG: PBC triclinic
+DEBUG: writing POSRE file
+DEBUG: atomTypes 16
+DEBUG: GMX atomtypes done
+DEBUG: type of water 'TIP3P'
+DEBUG: atoms 26292
+DEBUG: GMX atoms done
+DEBUG: bonds 26164
+DEBUG: GMX bonds done
+DEBUG: atomPairs 46464
+DEBUG: GMX pairs done
+DEBUG: angles 33536
+DEBUG: GMX angles done
+DEBUG: setProperDihedralsCoef done
+DEBUG: properDihedralsCoefRB 45952
+DEBUG: properDihedralsAlphaGamma 1024
+DEBUG: properDihedralsGmx45 69248
+==> Writing GMX dihedrals for GMX 4.5 and higher.
+
+DEBUG: GMX special proper dihedrals done
+DEBUG: improperDihedrals 768
+DEBUG: GMX improper dihedrals done
+==> Non-default 1-4 scale parameters detected. Converting individually. Please cite:
+
+ BERNARDI, A., FALLER, R., REITH, D., and KIRSCHNER, K. N. ACPYPE update for
+ nonuniform 1-4 scale factors: Conversion of the GLYCAM06 force field from AMBER
+ to GROMACS. SoftwareX 10 (2019), 100241. doi: 10.1016/j.softx.2019.100241"
+
+DEBUG: prmtop and inpcrd files parsed
+Total time of execution: 2s
+DEBUG: No tmp folder left to be removed

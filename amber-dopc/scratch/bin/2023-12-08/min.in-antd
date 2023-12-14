@@ -1,0 +1,45 @@
+minimization of solvent 			# may not be necessary -- ignored by namelist?
+ &cntrl  					# ampersand followed by namelist group
+  imin = 1, maxcyc = 1000,   			# variable inputs, make sure you get spaces and commas
+  ncyc = 20, ntx = 1,                     
+  ntwe = 0, ntwr = 500, ntpr = 50,
+  ntc = 2, ntf = 2, ntb = 1, ntp = 0,
+  cut = 10.0,   
+  ntr=1, restraintmask = ':1-81',
+  restraint_wt = 100.,
+  ioutfm=1, ntxo=2,
+ /
+
+
+
+# this uses a namelist input syntax
+# &name
+# &# var1=val, var2=val, var3(sub)=value,
+# &# var4(sub,sub,sub,sub)=value,value,
+# &# var5=repeat*value,value,
+# &# from page 380 of amber manual
+
+ 
+# imin = 1       This run is a minimization run.
+# maxcyc = 1000  The maximum amount of minimization cycles is 1000.
+# ncyc = 20      The first 20 cycles will utilize the steepest descent 
+#                   algorithm before shifting to the conjugate gradient 
+#                   algorithm for the remaining cycles. 
+# ntx = 1        The coordinates but not velocities are read formatted 
+#                   from the coordinate file provided. 
+# ntwe = 0       No mden files are written.
+# ntwr = 500     The amount of steps in which restrt files are written.
+# ntpr = 50      The amount of steps in which mdout and mdinfo files
+#                   are written.
+# ntc = 2        Bonds involving H are constrained. 
+# ntf = 2        Bonds involving H are omitted from force evaluation. 
+# ntb = 1        There is constant volume.
+# ntp = 0        There is no pressure scaling.
+# cut = 10.0     The non-bonded cutoff is 10.0 Angstroms.
+# ntr = 1        Use restraints.
+# restraintmask = ':1-81'  Restrain the solute - protein (res 1-81).
+# restraint_wt = 100  Positional restraint is 100 kcal/mol*Ang^-2.
+# ioutfm = 1     The format of the coordinate and velocity trajectory 
+#                  files written as binary NetCDF.
+# ntxo=2         The restrt file format is NetCDF.
+# 

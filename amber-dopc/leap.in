@@ -1,0 +1,8 @@
+source leaprc.water.tip3p
+source leaprc.gaff2
+source leaprc.lipid21
+DOPC = loadpdb ./dopc128x1_42w_lipid17_amb.pdb
+set DOPC box { 68.934001922607424 69.006000518798825 98.029998779296874 }
+saveamberparm DOPC dopc128x1_42w_lipid21.prmtop dopc128x1_42w_lipid21.inpcrd
+savepdb DOPC dopc128x1_42w_lipid21.pdb
+quit

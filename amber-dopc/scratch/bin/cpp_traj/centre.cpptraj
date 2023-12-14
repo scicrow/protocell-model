@@ -1,0 +1,6 @@
+parm dopc128x1_42w_lipid21.prmtop
+trajin dopc128x1_42w_lipid21.pdb
+
+
+trajout wrap_traj.pdb
+
