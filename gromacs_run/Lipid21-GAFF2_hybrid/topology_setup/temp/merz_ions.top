@@ -1,0 +1,65 @@
+;
+;   File merz_ions.top  was generated
+;   By user: cara (1000)
+;   On host:C-A0027004 
+;   At date:Thu. December  4 13:27:23 2023 
+;
+;   This is a standalone topology file
+;
+;   Created by:
+;   ParmEd:       ions_convert.py, VERSION4.2.2 
+;   Executable:   ions_convert.py
+;   Library dir:  /usr/local/share/gromacs/top
+;   Command line:
+;     ../ions_convert.py
+;
+
+[ defaults ]
+; nbfunc        comb-rule       gen-pairs       fudgeLJ fudgeQQ
+1               2               yes             1            1           
+
+[ atomtypes ]
+; name    at.num    mass    charge ptype  sigma      epsilon
+K+            19  39.100000  0.00000000  A     0.30629098     0.63309573
+Na+           11  22.990000  0.00000000  A     0.26281512     0.13269531
+Cl-           17  35.450000  0.00000000  A     0.40126078      2.5226632
+
+
+[ moleculetype ]
+; Name            nrexcl
+K          3
+
+[ atoms ]
+;   nr       type  resnr residue  atom   cgnr    charge       mass  typeB    chargeB      massB
+; residue    1 K rtp K q 1.0
+    1         K+      1      K      K      1 1.00000000  39.100000   ; qtot 1.000000
+
+
+[ moleculetype ]
+; Name            nrexcl
+NA          3
+
+[ atoms ]
+;   nr       type  resnr residue  atom   cgnr    charge       mass  typeB    chargeB      massB
+; residue    1 NA rtp NA q 1.0
+    1        Na+      1     NA     NA      1 1.00000000  22.990000   ; qtot 1.000000
+
+
+[ moleculetype ]
+; Name            nrexcl
+CL          3
+
+[ atoms ]
+;   nr       type  resnr residue  atom   cgnr    charge       mass  typeB    chargeB      massB
+; residue    1 CL rtp CL q -1.0
+    1        Cl-      1     CL     CL      1 -1.00000000  35.450000   ; qtot -1.000000
+
+[ system ]
+; Name
+Generic title
+
+[ molecules ]
+; Compound       #mols
+K                    1
+NA                   1
+CL                   1

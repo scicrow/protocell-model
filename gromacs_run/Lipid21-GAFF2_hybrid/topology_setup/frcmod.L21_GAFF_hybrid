@@ -1,0 +1,32 @@
+Combining carboxyl headgroup with alkane tail using Lipid21 and GAFF2 parameters
+MASS
+
+BOND
+c -cD  234.85   1.5270       GAFF2.2.20
+
+ANGLE
+c -cD-cD    63.79     110.53    Lipid14/Lipid21
+c -cD-hL    47.20     109.68    Lipid14/Lipid21
+cD-c -o     76.45     122.90    GAFF2.2.20
+cD-c -oh    77.42     112.74    GAFF2.2.20
+
+DIHEDRAL
+c -cD-cD-cD   1    0.156         0.000           3.0    SCEE=1.2 SCNB=2.0       Lipid21
+c -cD-cD-hL   1    0.156         0.000           3.0    SCEE=1.2 SCNB=2.0       Lipid21
+o -c -cD-cD   1    0.200       180.000          -2.000      x3a-2021            GAFF2.2.20
+o -c -cD-cD   1    0.440       180.000          -3.000      x3a-2021            GAFF2.2.20
+o -c -cD-cD   1    0.680         0.000           1.000      x3a-2021            GAFF2.2.20
+o -c -cD-hL   1    4.030         0.000          -1.000      x67-2021            GAFF2.2.20
+o -c -cD-hL   1    3.660       180.000           2.000      x67-2021            GAFF2.2.20
+oh-c -cD-cD   1    0.200       180.000          -2.000      x3a-2021            GAFF2.2.20
+oh-c -cD-cD   1    0.440       180.000          -3.000      x3a-2021            GAFF2.2.20
+oh-c -cD-cD   1    0.680         0.000           1.000      x3a-2021            GAFF2.2.20
+oh-c -cD-hL   1    4.030         0.000          -1.000      x67-2021            GAFF2.2.20
+oh-c -cD-hL   1    3.660       180.000           2.000      x67-2021            GAFF2.2.20
+cD-c -oh-ho   1    1.800       180.000           2.000      c12-2021            GAFF2.2.20
+
+IMPROPER
+cD-o -c -o          1.1          180.0         2.0
+cD-o -c -oh         1.1          180.          2.
+
+NONBON

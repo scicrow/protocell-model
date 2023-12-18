@@ -1,6 +1,0 @@
-# just links to two helpful amber tutorials that I followed. The first one is the concise one which I actually used
-# the second one has more steps used to relax explicit water molecules
-
-# 1) https://ambermd.org/tutorials/basic/tutorial0/index.php#Prepare_topology_and_coordinate_files
-# 2) https://ambermd.org/tutorials/basic/tutorial13/index.php
-# 3) AMBER manual: https://ambermd.org/doc12/Amber22.pdf

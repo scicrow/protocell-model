@@ -1,0 +1,55 @@
+define                  = -DPOSRES 	;define for preprocessor. dposres triggers posre.itp
+					;this is position restraint topology
+refcoord-scaling        = all		;reference coordinates for position restraints. 
+					;all=scaled with scaling matrix of pressure coupling
+
+integrator              = md		;md=leap-frog algorithm for newton's equations of motion
+constraints             = h-bonds	;controls which bonds converted to 
+					;rigid holonomic restraints
+constraint-algorithm    = lincs		;chooses how to solve non-holonomic restraints
+dt                      = 0.002		;time step (ps) for integration default 0.001
+nsteps                  = 250000 	;maximum steps to integrate/minimize (-1 no max)
+
+nstcomm                 = 100 		;(100 steps) frequency of center 
+					;of mass motion removal
+
+pbc                     = xyz 		;periodic boundary conditions. xyz is all directions
+periodic-molecules      = no 		;no = molecules are finite. faster. 
+					;yes = molecules bond over pbc 
+rlist                   = 1.0 		;(1 nm) cutoff distance for short-range neighbour list. 
+					;with dynamics, this set by verley-buffer-tolerance 
+					;and rlist ignored. NVE sims cause issues 
+nstlist                 = 10 		;update neighbour list every 10 steps
+ns-type                 = grid		;neighbour search neighbouring grid cells. faster
+
+coulombtype             = PME 		;PME = Particle-Mesh Ewald electrostatics
+rcoulomb                = 1.0 		;(nm) distance for coulomb cutoff
+cutoff-scheme           = verlet	;verlet lists. more efficient than pair
+vdwtype                 = cut-off	;how to deal with vdw over distance
+rvdw                    = 1.0 		;nm distance for LJ or Buckingham cutoff
+fourierspacing          = 0.12		;default 0.12 ratio of box xyz and spacing
+					;determines lower bound of wave vectors in ewald
+					;optimize the load of particle-particle interactions
+pme-order               = 4		;default is 4 interpolation order of PME
+table-extension         = 1.6		;default 1 nm cutoff of non-bonded neighbours. should						;be big enough to account charge group sizes
+DispCorr                = EnerPres	;van der waals dispersion corrections (energy+pressure)
+
+nstlog                  = 100000	;write energies to log file every x steps
+nstenergy               = 10000		;write energies to energy file
+nstxout-compressed      = 10000		;number of steps between writing position coords
+					;uses lossy compression
+
+Tcoupl                  =  V-rescale	;temperature coupling. v-rescale uses velocity rescale
+tc-grps                 =  DCA_DCN  Water_and_ions	;groups of seperate temp baths
+tau_t                   =  0.1      0.1		;time constant for temp coupling in picaseconds
+ref_t                   =  295.1    295.1	;reference temperature for coupling (K)
+pcoupl                  =  C-rescale		;pressure coupling. c-rescale
+						;exponential temp coupling every tau-p
+Pcoupltype              =  semiisotropic   	;xy coupled. z axis independent pressure
+tau_p                   =  1.0			;time constant for pressure coupling
+compressibility         =  4.2e-5   4.2e-5	;per bar pressure. 
+						;water at 1atm 300k is 4.5e-5 per bar
+ref_p                   =  1.01325  1.01325	; reference pressure. pcoupletype sets number							;of required values
+
+gen-vel                 = yes			;generate velocities
+gen-temp                = 295.1			;generate temp. 300K is maxwell distribution
