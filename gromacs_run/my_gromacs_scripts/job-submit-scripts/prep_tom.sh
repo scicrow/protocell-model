@@ -7,6 +7,29 @@
 #
 
 
+run_dir=$cur_dir/$new_run
+mkdir $run_dir
+cp $cur_dir/* $run_dir/. 
+cd $run_dir/.
+echo "simulation running in " $run_dir
+#rm -r $run_dir #for debugging
+
+
+python #insert run code here  
+
+
+#run python function that runs minimization 1
+#CHECK
+#run again for min 2
+#CHECK
+#run eq1
+#CHECK
+#run eq2
+#CHECK
+#run md295
+#run md305
+#analysis
+
 
 
 
