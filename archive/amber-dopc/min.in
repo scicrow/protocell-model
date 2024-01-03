@@ -1,0 +1,45 @@
+# Run Minimization - Eliminate Bad Contacts
+# Energy minimization step is necessary because bad contacts created by addition of water, hydrogens, and other atoms need to be removed.
+# Without this minimization step, the energy in that bad contact region can be too high enough to crash the simulation.
+# Minimization moves the atoms based on the forces and finds the closest structure at its energy minimum.
+# Taken from: https://ambermd.org/tutorials/basic/tutorial15/index.php
+# 
+# imin = 1      :Choose a minimization run
+# maxcyc=100    :Maximum minimization cycles
+# ntx = 1,      :Read coordinates with no velocities from the restart file
+# ntwr = 100    :Write "restrt" file in every 100 steps
+# ntpr = 10     :Print to the Amber "mdout" output file every 10 cycles
+# ioutfm=0      :Specify format of coordinate file as binary NetCDF file
+# ntxo=1        :Specify the format of the final coordinates, 
+#                 velocities in the restart file to be ASCII format
+# cut = 1000.0  :Nonbounded cutoff distance in angstroms. Higher the 
+#                 number, better accuracy with increased computational cost
+# ntb=0         :No periodic boundaries imposed on the system during the 
+#                  non-bounded interactions calculation 
+# igb = 8       :Specify GBneck2, the implicit solvent model
+# gbsa=3        :Compute surface area using a fast pairwise approximation 
+#                  suitable for GPU machine 
+# surften=0.007 :Set the surface tension used to calculate the nonpolar 
+#                  contribution to the free energy of solvation 
+# saltcon = 0.0 :Set the concentration (M) of 1-1 mobile counterions in 
+#                 the solution
+#
+# 
+# 
+#
+energy minimization
+ &cntrl
+  imin = 1,
+  maxcyc=100,  
+  ntx = 1, 
+  ntwr = 100, 
+  ntpr = 10, 
+  ioutfm=0, 
+  ntxo=1, 
+  cut = 1000.0, 
+  ntb=0, 
+  igb = 8, 
+  gbsa=3, 
+  surften=0.007, 
+  saltcon = 0.0, 
+ &end

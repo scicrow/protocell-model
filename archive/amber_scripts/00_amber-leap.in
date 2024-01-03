@@ -1,0 +1,8 @@
+source leaprc.lipid21 # used for its 1-4 dihedral calculation for lipid chain
+source leaprc.gaff2 # used to define head group
+source leaprc.water.tip3p # source leaprc file for TIP3P water model
+coord_in = loadpdb dopc128x1_42w_lipid21.pdb
+# solvatebox coord_in TIP3PBOX # specify number of waters. may not need to solvate dpopc. may need to restrain sims 
+# addions mol Cl- 0 ! will need to do this at sompeoint but not yet
+saveamberparm mol dpoc128x1_42w_lipid21.prmtop dopc128x1_42w_lipid21.inpcrd # output files
+quit

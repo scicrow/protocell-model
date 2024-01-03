@@ -1,0 +1,8 @@
+# Log started on 12/04/2023 [mm/dd/yyyy] at 13:51:07
+hmassreparition dopc128x1_42w_lipid21.prmtop
+hmassrepartition
+hmassrepartition dopc128x1_42w_lipid21.prmtop
+hmassrepartition dopc128x1_42w_lipid21.prmtop
+load dopc128x1_42w_lipid21.prmtop
+-p
+quit

@@ -1,0 +1,14 @@
+tolerance 2.0 
+filetype pdb
+output bilayer_0mM_k_test.pdb
+add_amber_ter
+
+structure K+_amber.pdb 
+  number 72
+  inside box 1. 1. 1. 53. 53. 77.
+end structure
+
+structure K+_amber.pdb
+  number 72
+  inside box 1. 1. 109. 53. 53. 185.
+end structure

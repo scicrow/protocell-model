@@ -1,0 +1,41 @@
+; GAFF2 & Lipid21 parameters used by Cara to combine carboxyl
+; headgroup with alkane tail to assemble topology for decanoic
+; acid and decanoate bilayers. These were then converted from 
+; amber to gromacs format using parmed & acpype.
+
+[ defaults ]
+; nbfunc        comb-rule       gen-pairs       
+1               2               no              
+
+[ atomtypes ]
+;name   bond_type     mass     charge   ptype   sigma         epsilon       Amb
+ cD       cD          0.00000  0.00000   A     3.39967e-01   4.57730e-01 ; 1.91  0.1094
+ hL       hL          0.00000  0.00000   A     2.60142e-01   4.18400e-02 ; 1.46  0.0100
+ c        c           0.00000  0.00000   A     3.31521e-01   4.13379e-01 ; 1.86  0.0988
+ o        o           0.00000  0.00000   A     3.04812e-01   6.12119e-01 ; 1.71  0.1463
+ oh       oh          0.00000  0.00000   A     3.24287e-01   3.89112e-01 ; 1.82  0.0930
+ ho       ho          0.00000  0.00000   A     5.37925e-02   1.96648e-02 ; 0.30  0.0047
+ OW       OW          0.00000  0.00000   A     3.15075e-01   6.35968e-01 ; 1.77  0.1520
+ HW       HW          0.00000  0.00000   A     0.00000e+00   0.00000e+00 ; 0.00  0.0000
+
+; Remember to remove incorrect ion parameters from include
+; list and edit below molecules section as required.
+
+;#include "aqvist_ions.itp"
+#include "merz_ions.itp"
+#include "DCA.itp"
+#include "DCN.itp"
+#include "amber03.ff/tip3p.itp"
+
+[ system ]
+DCA and DCN with ions in tip3p water
+
+[ molecules ]
+; Names must match those used in included .itp files.
+; Order & number of molecules must match structure file.
+; Compound        nmols
+DCA                144
+DCN                144
+NA                 165
+CL                  21
+SOL              11520 
