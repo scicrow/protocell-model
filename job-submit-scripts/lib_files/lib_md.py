@@ -9,23 +9,13 @@ file_name = file_list[-1]
 #print(file_name)
 
 
-#  name script
-
-# look at molecule, generate topology 
-
-# minimization script
-
-#def pdb_amber():
-#	return 0
-	
-
 def inp_grompp (file_name, mdp_in):
     #handles the input parameters for grompp. forcefield and coords are hard-coded but mdp must be specified.
     deff_nm = mdp_in.split(".")[0] #naming scheme for the run used by gmx in next step
     
     #hardcoding variables at the moment. future idea would be good to is to make these defaults, then change if not existing
-    coord_in = "L21hybrid_bilayer_100mM.pdb"
-    top_in = "L21hybrid_bilayer_topol.top"
+    coord_in = "L21hybrid_bilayer_100mM_Kions.pdb"
+    top_in = "L21hybrid_bilayer_Kions_topol.top"
 
     #some runs should have restart and index outputs. may need a separate function for grompp with index?
 
@@ -74,25 +64,23 @@ def run_grompp (file_name, par_list):
     
 
 
-def run_mdrun (filename, run_type, dlb_stat, tpr_input, max_hour):
-	# runs molecular dynamics from an input .tpr file generated in run_grompp. replace gmx_mpi_d with gmx for non-parallelised runs
-	subprocess.run (['echo', run_type, 'mdrun', '-dlb', dlb_stat,
-	 '-deffnm', tpr_input, '-cpi', '-maxh', max_hour ])
-	# dlb = dynamic load balancing. -cpi writes and looks for
-
-
-
-def debug_run ():
-	subprocess.run(['echo hello world'], shell=True, text=True)
+def run_mdrun (file_name, tpr_input, max_hour):
+    # runs molecular dynamics from an input .tpr file generated in run_grompp. replace gmx_mpi_d with gmx for non-parallelised runs
+    run_type = "gmx_mpi_d"
+    subprocess.run([run_type, 'mdrun', '-deffnm', tpr_input, '-cpi', '-maxh', max_hour])
+    # dlb = dynamic load balancing. -cpi writes and looks for
 
 
 
 
 
+#each one of the below will become a run function at some point. they have been used individually to success
 
 par_list = (inp_grompp(file_name, "en_min.mdp"))
-run_grompp(file_name, par_list)
-
+#run_grompp(file_name, par_list)
+#inp_list = [file_name, "en_min", "24.2"]
+run_mdrun(*inp_list)
+#print (inp_list)
 
 
 
