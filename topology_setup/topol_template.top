@@ -1,0 +1,14 @@
+#include "amber03.ff/tip3p.itp"
+
+[ system ]
+DCA and DCN with ions in tip3p water
+
+[ molecules ]
+; Names must match those used in included .itp files.
+; Order & number of molecules must match structure file.
+; Compound        nmols
+DCA                144
+DCN                144
+NA                 165
+CL                  21
+SOL              11520 

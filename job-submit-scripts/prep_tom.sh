@@ -7,15 +7,15 @@
 #
 
 
-run_dir=$cur_dir/$new_run
-mkdir $run_dir
-cp $cur_dir/* $run_dir/. 
-cd $run_dir/.
-echo "simulation running in " $run_dir
+#run_dir=$cur_dir/$new_run
+#mkdir $run_dir
+#cp $cur_dir/* $run_dir/. 
+#cd $run_dir/.
+#echo "simulation running in " $run_dir
 #rm -r $run_dir #for debugging
 
 
-python #insert run code here  
+#python #insert run code here  
 
 
 #run python function that runs minimization 1
@@ -67,16 +67,16 @@ echo $run_dir
 
 # need to know wtf this index is actually for 
 #Create index file
-(echo 'r DCN'; echo 'r DCA | r DCN'; echo 'r SOL | r Na | r Cl'; echo 'name 10 Water_and_ions'; echo q) | gmx make_ndx -f L21hybrid_bilayer_100mM.pdb -o index.ndx
+(echo 'r DCN'; echo 'r DCA | r DCN'; echo 'r SOL | r Na | r Cl'; echo 'name 10 Water_and_ions'; echo q) | gmx make_ndx -f L21hybrid_bilayer_100mM_Kions.pdb -o index.ndx
 
 
 #  these can be separate functions.
 #Energy minimisation in 2 steps
-gmx grompp -f en_min.mdp -c L21hybrid_bilayer_100mM.pdb -p L21hybrid_bilayer_topol.top -o en_min.tpr
-gmx mdrun -deffnm en_min
-gmx grompp -f en_min2.mdp -c en_min.gro -p L21hybrid_bilayer_topol.top -o en_min2.tpr
-gmx mdrun -deffnm en_min2
+#gmx grompp -f en_min.mdp -c L21hybrid_bilayer_100mM.pdb -p L21hybrid_bilayer_topol.top -o en_min.tpr
+#gmx mdrun -deffnm en_min
+#gmx grompp -f en_min2.mdp -c en_min.gro -p L21hybrid_bilayer_topol.top -o en_min2.tpr
+#gmx mdrun -deffnm en_min2
 
 #Grompp for initial equilibration period but don't run yet
-gmx grompp -f premd1.mdp -c en_min2.gro -r en_min2.gro -p L21hybrid_bilayer_topol.top -n index.ndx -o premd1.tpr
+#gmx grompp -f premd1.mdp -c en_min2.gro -r en_min2.gro -p L21hybrid_bilayer_topol.top -n index.ndx -o premd1.tpr
 #Remaining steps need to be submitted to queueing system

@@ -1,0 +1,22 @@
+source leaprc.gaff2										# source GAFF force field
+source leaprc.lipid21									# source lipid21 force field
+loadamberparams frcmod.L21_GAFF_hybrid					# source force field modifications
+loadoff DCA_L21_hybrid.lib								# source parameters for DCA
+loadoff DCN_L21_hybrid.lib								# source parameters for DCN
+DCA=loadpdb DCA_amber.pdb								# load the DCA pdb file
+saveAmberParm DCA temp/L21_hybrid_DCA.prmtop temp/DCA.prmcrd	# set topology output file
+check DCA
+
+DCN=loadpdb DCN_amber.pdb								# load the DCN pdb file
+saveAmberParm DCN temp/L21_hybrid_DCN.prmtop temp/DCN.prmcrd	# set topology output file
+check DCN
+
+source leaprc.water.tip3p								# source TIP3p water model force field
+loadamberparams frcmod.ions1lm_126_tip3p				# load Merz ion force field
+merz=loadpdb ions_amber.pdb								# load the ion pdb file
+saveAmberParm merz temp/merz_ions.prmtop temp/ions.prmcrd		# set topology output file
+loadamberparams frcmod.ionsff99_tip3p					# load Aqvist ion force field
+aqvist=loadpdb ions_amber.pdb							# load the pdb file again
+saveAmberParm aqvist temp/aqvist_ions.prmtop temp/ions.prmcrd	# set topology output file
+
+quit
