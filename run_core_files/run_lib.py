@@ -1,7 +1,9 @@
 #!/bin/python
 #run_lib.py 08/01/2024 thomas crow. a library to run each step of a gromacs simulations. minimization, equilibration and production. uses gromacs_lib.py which must be in same dir.
+#mdp, coord topology, and itp forcefields should all be included in the same directory
 
 
+import sys
 from gmx_lib import *
 import subprocess
 
@@ -10,13 +12,11 @@ file_name = __file__
 file_list = file_name.split("/")
 file_name = file_list[-1]
 
-#coord_in to change after min, eq1, eq2, prod1, prod2
 
 #run_type = "gmx"
 run_type = "gmx"  #"gmx_mpi_d" #for when on supercomputer
 top_in = "L21hybrid_bilayer_Kions_topol.top"
 
-#each one of the below will become a run function at some point. they have been used individually to success
 
 #minimization run
 
@@ -33,7 +33,7 @@ def minimization_run(run_type, top_in):
     run_grompp(file_name, run_type, grompp_input, grompp_stage)
 
 
-
+#equilibration with restraints on lipid bilayer
 
 def eq1_run(run_type, top_in):
     coord_in = "en_min.gro"
@@ -51,7 +51,7 @@ def eq1_run(run_type, top_in):
     run_grompp(file_name, run_type, grompp_input, grompp_stage)
 
 
-
+#removing restraint and continue equilibration
 
 def eq2_run(run_type, top_in):
     coord_in = "premd1.gro"
@@ -67,7 +67,7 @@ def eq2_run(run_type, top_in):
     run_grompp(file_name, run_type, grompp_input, grompp_stage)
 
 
-
+#heating to 295K
 
 def prod295_run(run_type, top_in):
     coord_in = "premd2.gro"
@@ -82,7 +82,7 @@ def prod295_run(run_type, top_in):
     run_grompp(file_name, run_type, grompp_input, grompp_stage)
 
 
-
+#heating to 305K
 
 def prod305_run(run_type, top_in):
     coord_in = "md_295.gro"
@@ -97,38 +97,30 @@ def prod305_run(run_type, top_in):
     run_grompp(file_name, run_type, grompp_input, grompp_stage)
 
 
-minimization_run(run_type, top_in)
-run_mdrun(run_type, "en_min")
-eq1_run(run_type, top_in)
-run_mdrun(run_type, "premd1")
-eq2_run(run_type, top_in)
-run_mdrun(run_type, "premd2")
-prod295_run(run_type, top_in)
-run_mdrun(run_type, "md_295")
-prod305_run(run_type, top_in)
-run_mdrun(run_type, "md_305")
 
 
+#pass the modelling stage in at command line. should be three-letter input with no spaces. 
+print("run_lib.py 08/01/2024 a script for running gromacs. user input required to determine step: min/eq1/eq2/295/305 \n")
+usr_in = sys.argv[1].lower()
 
-#grompp min1 L21
-#inp_grompp
+while True:
+    if usr_in == 'min':
+        minimization_run(run_type, top_in)
+        run_mdrun(run_type, "en_min")
+    elif usr_in == 'eq1':
+        eq1_run(run_type, top_in)
+        run_mdrun(run_type, "premd1")
+    elif usr_in == 'eq2':
+        eq2_run(run_type, top_in)
+        run_mdrun(run_type, "premd2")
+    elif usr_in == '295':
+        prod295_run(run_type, top_in)
+        run_mdrun(run_type, "md_295")
+    elif usr_in == '305':
+        prod305_run(run_type, top_in)
+        run_mdrun(run_type, "md_305")
+    else:
+        print ('Incorrect input. please enter min/eq1/eq2/295 or 305.')
 
-#mdrun min1 
-
-#grompp eq1 min1_coord
-
-#mdrun eq1
-
-#grompp eq2 eq1_coord
-
-#mdrun eq2
-
-#grompp prod1 eq2_coord
-
-#mdrun prod1
-
-#grompp prod2 prod1_coord
-
-#mdrun prod2
 
 #analysis
