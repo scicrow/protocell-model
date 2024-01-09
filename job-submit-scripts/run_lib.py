@@ -28,16 +28,14 @@ def minimization_run(run_type, top_in):
     input_list = [coord_in, top_in, mdp_in, deff_nm, rest_op]
     grompp_stage = 0
 
-    grompp_input = inp_grompp(file_name, *input_list)
     make_index(file_name, run_type, coord_in)
+    grompp_input = inp_grompp(file_name, *input_list)
     run_grompp(file_name, run_type, grompp_input, grompp_stage)
 
 
 #equilibration with restraints on lipid bilayer
 
 def eq1_run(run_type, top_in):
-    coord_in = "en_min.gro"
-    mdp_in = "premd1.mdp" 
     coord_in = "en_min.gro"
     mdp_in = "premd1.mdp" 
     deff_nm = mdp_in.split(".")[0] #naming scheme for the run used by gmx in next step
@@ -47,7 +45,8 @@ def eq1_run(run_type, top_in):
     grompp_stage = "eq"
 
     grompp_input = inp_grompp(file_name, *input_list)
-    make_index(file_name, run_type, coord_in)
+    #below causing issues
+    #make_index(file_name, run_type, coord_in)
     run_grompp(file_name, run_type, grompp_input, grompp_stage)
 
 
@@ -63,7 +62,7 @@ def eq2_run(run_type, top_in):
     grompp_stage = True 
 
     grompp_input = inp_grompp(file_name, *input_list)
-    make_index(file_name, run_type, coord_in)
+    #make_index(file_name, run_type, coord_in)
     run_grompp(file_name, run_type, grompp_input, grompp_stage)
 
 
@@ -78,7 +77,7 @@ def prod295_run(run_type, top_in):
     grompp_stage = True
 
     grompp_input = inp_grompp(file_name, *input_list)
-    make_index(file_name, run_type, coord_in)
+    #make_index(file_name, run_type, coord_in)
     run_grompp(file_name, run_type, grompp_input, grompp_stage)
 
 
@@ -93,34 +92,35 @@ def prod305_run(run_type, top_in):
     grompp_stage = True
 
     grompp_input = inp_grompp(file_name, *input_list)
-    make_index(file_name, run_type, coord_in)
+    #make_index(file_name, run_type, coord_in)
     run_grompp(file_name, run_type, grompp_input, grompp_stage)
 
 
 
 
-#pass the modelling stage in at command line. should be three-letter input with no spaces. 
-print("run_lib.py 08/01/2024 a script for running gromacs. user input required to determine step: min/eq1/eq2/295/305 \n")
-usr_in = sys.argv[1].lower()
+#the below doesn't sem to work well with sbatch
 
-while True:
-    if usr_in == 'min':
-        minimization_run(run_type, top_in)
-        run_mdrun(run_type, "en_min")
-    elif usr_in == 'eq1':
-        eq1_run(run_type, top_in)
-        run_mdrun(run_type, "premd1")
-    elif usr_in == 'eq2':
-        eq2_run(run_type, top_in)
-        run_mdrun(run_type, "premd2")
-    elif usr_in == '295':
-        prod295_run(run_type, top_in)
-        run_mdrun(run_type, "md_295")
-    elif usr_in == '305':
-        prod305_run(run_type, top_in)
-        run_mdrun(run_type, "md_305")
-    else:
-        print ('Incorrect input. please enter min/eq1/eq2/295 or 305.')
+#pass the modelling stage in at command line. should be three-letter input with no spaces. 
+#print("run_lib.py 08/01/2024 a script for running gromacs. user input required to determine step: min/eq1/eq2/295/305 \n")
+#usr_in = sys.argv[1].lower()
+
+#if usr_in == 'min':
+#    minimization_run(run_type, top_in)
+#    run_mdrun(run_type, "en_min")
+#elif usr_in == 'eq1':
+eq1_run(run_type, top_in)
+run_mdrun(run_type, "premd1")
+#elif usr_in == 'eq2':
+#    eq2_run(run_type, top_in)
+#    run_mdrun(run_type, "premd2")
+#elif usr_in == '295':
+#    prod295_run(run_type, top_in)
+#    run_mdrun(run_type, "md_295")
+#elif usr_in == '305':
+#    prod305_run(run_type, top_in)
+#    run_mdrun(run_type, "md_305")
+#else:
+#    print ('Incorrect input. please enter min/eq1/eq2/295 or 305.')
 
 
 #analysis

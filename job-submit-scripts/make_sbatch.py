@@ -3,18 +3,23 @@
 #Thomas Crow 2023
 #functions that govern making and submitting sbatch jobs for MD. 
 
+import sys
 import subprocess
 from datetime import datetime
+subprocess.run("module load gromacs/2023", shell = True)
 
-def sbatch_copy(): #inputs = job_type
+#filled by input_checker function. while None, the other functions won't run 
+job_type = None
+
+
+def sbatch_copy(job_type): #inputs = job_type
 	#copies a template sbatch script, making a new one with new job name based on input and timestamp.  	
-	sbatch_submit = "js_tom.sbatch"
+	sbatch_submit = "sbatch_template"
 	
 	#timestamps the job
 	now = datetime.now()
 	sb_name = now.strftime("%y%m%d_%H%M")
 
-	job_type = "tau_p1"
 	job_name = job_type  + sb_name 
 	sb_copy = sb_name + job_type + "_.sbatch"
 
@@ -33,7 +38,8 @@ def sbatch_copy(): #inputs = job_type
 
 
 def sbatch_jobname(job_name, sb_copy):  
-	
+    #changes the job name in the new sbatch script (sb_copy)
+
 	change_jobname = "#SBATCH --job-name="
 
 	#modify the job specs in the copied file
@@ -46,28 +52,53 @@ def sbatch_jobname(job_name, sb_copy):
 
 
 
-def sbatch_srun(sb_copy):
-	#this will be the function that determines the type of srun job command to run. should probably also figure out dependency maybe?
-	replace_line = '#srungoeshere'
-	new_line = 'replacementline'
-	
-	subprocess.run(["sed", "-i", 's/{}/{}/'.format(replace_line, new_line), sb_copy])
+def sbatch_type(job_type, sb_copy):
+	#adds the command to run run_md.py as a slurm job. needs to know the job type and the new sbatch script (sb_copy)
+    job_command = " run_lib.py " + job_type #will only work on supercomputers. but that's the whole point of slurm
+    replace_line = "srun -N $SLURM_JOB_NUM_NODES -n $SLURM_NTASKS -c $SLURM_CPUS_PER_TASK -m block:block:block python3"
+
+    subprocess.run(["sed", "-i", 's/\\({}\\).*/\\1{}/'.format(replace_line, job_command), sb_copy])
 	#check sbatch_jobname for documentation on how this command works.
 	#important difference is it replaces the hole line with the new_line variable.
 
 
-job_name, sb_copy = sbatch_copy()
-sbatch_jobname(job_name, sb_copy)
-#sbatch_srun(sb_copy)
+
 
 def run_sbatch(job_type):
+    #unfinished
     job_name = job_type + ".sbatch"
     depend_job = "--dependency=afterok:" + job_name
     #subprocess.run(['sbatch', '--parsable', job_name])
     print (depend_job)
     print ("job name is : " + job_name)
 
-run_sbatch("test")
+
+
+def input_checker(run_type):
+    #checks you are specifying a simulation type that run_lib.py can understand.
+    run_list = ['min', 'eq1', 'eq2', '295', '305']
+    run_type = str(run_type).lower()
+    if run_type in run_list:
+       # print ("command is correct")
+       return run_type
+    else:
+        print ("command not found!")
+    
+
+job_type = input_checker(sys.argv[1])
+
+if job_type != None:
+    job_name, sb_copy = sbatch_copy(job_type) #copy sbatch template and rename the copy
+    sbatch_jobname(job_name, sb_copy) #change the jobname field in the sbatch script
+    sbatch_type(job_type, sb_copy) #change the srun command in script
+
+else:
+    print ("Failed to define job type! Quiting...")
+
+#job_name, sb_copy = sbatch_copy("test")
+#sbatch_jobname(job_name, sb_copy)
+#sbatch_srun(job_type, sb_copy)
+
 
 
 #!/bin/bash
