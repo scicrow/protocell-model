@@ -45,3 +45,11 @@ def apl_function (): #(xy_coords, dec_num, steps);
 #radial_distribution_function ();
 	#do I need this? https://en.wikipedia.org/wiki/Radial_distribution_function
 apl_function()
+
+
+def actual_analysis ():
+# just copy pasting the relevant commands that make it work. noteL these are bash commands. 
+gmx traj -s premd2.gro -n index.ndx -f md_295.xtc -z -y -x -ob md295_box
+ gmx traj -s md295.gro -n index.ndx -f md_305.xtc -z -y -x -ob md305_box
+xmgrace -block md295_box.xvg -bxy 1:2 -bxy 1:3 -bxy 1:4
+xmgrace -block md305_box.xvg -bxy 1:2 -bxy 1:3 -bxy 1:4
