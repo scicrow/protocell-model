@@ -1,0 +1,42 @@
+define                  = -DPOSRES 
+refcoord-scaling        = all
+
+integrator              = md
+constraints             = h-bonds
+constraint-algorithm    = lincs
+dt                      = 0.002
+nsteps                  = 250
+nstcomm                 = 100
+
+pbc                     = xyz 
+periodic-molecules      = no
+rlist                   = 1.0 
+nstlist                 = 10
+ns-type                 = grid
+
+coulombtype             = PME 
+rcoulomb                = 1.0 
+cutoff-scheme           = verlet
+vdwtype                 = cut-off
+rvdw                    = 1.0 
+fourierspacing          = 0.12
+pme-order               = 6
+table-extension         = 1.6
+DispCorr                = EnerPres
+
+nstlog                  = 100000
+nstenergy               = 10000
+nstxout-compressed      = 10000
+
+Tcoupl                  =  V-rescale
+tc-grps                 =  DCA_DCN  Water_and_ions
+tau_t                   =  0.1      0.1
+ref_t                   =  295.1    295.1
+pcoupl                  =  C-rescale
+Pcoupltype              =  semiisotropic   
+tau_p                   =  1.0
+compressibility         =  4.2e-5   4.2e-5
+ref_p                   =  1.01325  1.01325
+
+gen-vel                 = yes
+gen-temp                = 295.1
