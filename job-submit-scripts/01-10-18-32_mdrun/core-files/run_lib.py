@@ -15,7 +15,7 @@ file_name = file_list[-1]
 
 core_dir = sys.argv[3]
 core_coord = glob.glob(f"{core_dir}/*.pdb")
-core_coord = str(core_coord[0])
+core_coord = core_coord[0]
 print(core_coord)
 run_type = "gmx"
 #run_type = "gmx_mpi_d" #for when on supercomputer
@@ -25,7 +25,9 @@ top_in = core_dir + ".top"
 
 #minimization run
 
-def minimization_run(run_type, coord_in, top_in):
+def minimization_run(run_type, top_in):
+    coord_in = ".pdb"
+    #coord_in = "L21hybrid_bilayer_100mM_Kions.pdb"
     mdp_in = "en_min.mdp" 
     deff_nm = mdp_in.split(".")[0] #naming scheme for the run used by gmx in next step
     rest_op = None
