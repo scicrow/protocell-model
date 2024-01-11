@@ -10,6 +10,7 @@ cd $run_dir
 cp -r $cur_dir $run_dir/. 
 run_dir=$(pwd)
 echo "$run_dir created and $cur_dir copied into it."
-core_dir=$run_dir'/core-files'
+core_dir=$run_dir"/core-files"
 
-python $core_dir/run_lib.py min $run_dir $core_dir
+echo "Running $core_dir/run_lib.py"
+python3 $core_dir/run_lib.py "min" "gmx" $core_dir $run_dir

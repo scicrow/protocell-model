@@ -8,8 +8,46 @@ file_name = __file__
 file_list = file_name.split("/")
 file_name = file_list[-1]
 from make_sbatch import *
+try:
+    import glob
+except:
+    print("Error importing glob")
 
-#coord_in to change after min, eq1, eq2, prod1, prod2
+def find_pdb(core_dir):
+    #a function for finding pdb file and topology file for the pdb run. there should be only one of each in the directory
+    #if there are multiple, this function will pick the first one of each.
+
+    #finds the coord file
+    core_dir = str(core_dir)
+    core_coord = glob.glob(f"{core_dir}/*.pdb")
+    #cleans up the core_coord, so you don't need to see its directory path in messages.
+    coord_address = core_coord[0]
+    coord_name = coord_address.split("/")
+    coord_name = coord_name[-1]
+
+    if len(core_coord)>=2:
+        print(f"multiple pdb files {len(core_coord)} detected. using {coord_name}")
+    else:
+        print(f"using {coord_name}")
+
+    #core_coord = core_coord[0]
+
+    #finds core directory topology file
+    core_top = glob.glob(f"{core_dir}/*.top")
+    
+    #cleans up the core_top
+    top_address = core_top[0]
+    top_name = top_address.split("/")
+    top_name = top_name[-1]
+
+    if len(core_top)>=2:
+        print(f"multiple pdb files {len(core_top)} detected. using {top_name}")
+    else:
+        print(f"using {top_name}")
+
+    return(coord_address, top_address) 
+
+
 
 def make_index (file_name, run_type, coord_in):
    #Create index file. not needed for min step?
@@ -47,7 +85,7 @@ def run_grompp (file_name, run_type,  par_list, grompp_stage):
     args_list = [run_type, "grompp"]
     args_list.extend(par_list)
     #grompp_stage should be filled for everything except minimization runs. allows index generated for restraints and analysis
-    if grompp_stage == None:
+    if grompp_stage == "No":
         print ("No index file input")
     else:
         args_list.extend(['-n', 'index.ndx'])
@@ -62,7 +100,7 @@ def run_grompp (file_name, run_type,  par_list, grompp_stage):
 
 
     
-def run_mdrun (run_type, deff_input, job_type):
+def run_mdrun (run_type, deff_input, job_type, core_dir, run_dir):
     # runs molecular dynamics from an input .tpr file generated in run_grompp. deff_nm should be formatted wihout the '.tpr'
     #feeds into make_sbatch.py
     sbatch_com = run_type + ' mdrun -deffnm ' + deff_input + ' -cpi -maxh 24.2'
@@ -70,10 +108,10 @@ def run_mdrun (run_type, deff_input, job_type):
     # dlb = dynamic load balancing. -cpi writes and looks for
     
     #check a job type was actually input, then create the sbatch file using make_sbatch.py
-    if job_type != None:
-        job_name, sb_copy = sbatch_copy(job_type) #copy sbatch template and rename the copy
-        sbatch_jobname(job_name, sb_copy) #change the jobname field in the sbatch script
-        sbatch_type(sbatch_com, sb_copy) #change the srun command in script
+    if job_type != "No":
+        job_name, sb_loc = sbatch_copy(job_type, run_dir, core_dir) #copy sbatch template and rename the copy #jobtype, rundir, coredir vars needed
+        sbatch_jobname(job_name, sb_loc) #change the jobname field in the sbatch script
+        sbatch_type(sbatch_com, sb_loc, job_type) #change the srun command in script
 
     else:
         print ("Failed to define job type! Quiting...") 

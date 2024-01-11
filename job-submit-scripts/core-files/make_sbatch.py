@@ -12,17 +12,17 @@ subprocess.run("module load gromacs/2023", shell = True)
 job_type = None
 
 
-def sbatch_copy(job_type): #inputs = job_type
+def sbatch_copy(job_type, run_dir, core_dir): #inputs = job_type
 	#copies a template sbatch script, making a new one with new job name based on input and timestamp.	
-	sbatch_submit = "sbatch_template"
+	sbatch_submit = core_dir + "/sbatch_template"
 	
 	#timestamps the job
 	now = datetime.now()
 	sb_name = now.strftime("%m%d")
 
 	job_name = job_type  + "_" + sb_name 
-	sb_copy = sb_name + job_type + ".sbatch"
-	sb_location = "../" + sb_copy
+	sb_copy = sb_name + job_type + ".sbatch" #sbatch job name
+	sb_location = run_dir + "/" + sb_copy # location should be in run directory
 
 	#create copy of template sbatch file
 	try:
@@ -32,18 +32,18 @@ def sbatch_copy(job_type): #inputs = job_type
 		print("Error with sbatch_copy function. check your inputs are correct. Error is: ", e)
  
 	#return variables that are needed for sbatch_jobname and sbatch_srun
-	return (job_name, sb_copy) #might want to use iterative unpacking for any instance of calling this function 
+	return (job_name, sb_location)
 
 
 
 
-def sbatch_jobname(job_name, sb_copy):	
+def sbatch_jobname(job_name, sb_loc):	
     #changes the job name in the new sbatch script (sb_copy)
 
 	change_jobname = "#SBATCH --job-name="
 
 	#modify the job specs in the copied file
-	subprocess.run(["sed", "-i", 's/\\({}\\).*/\\1{}/'.format(change_jobname, job_name), sb_copy])
+	subprocess.run(["sed", "-i", 's/\\({}\\).*/\\1{}/'.format(change_jobname, job_name), sb_loc])
 	# s/ subtitution
 	# \({}\) capturing group in regular expression for change_jobname to replace \\ escape parentheses of regular expression
 	# .*/ matches caracters .* until end of line
@@ -52,12 +52,12 @@ def sbatch_jobname(job_name, sb_copy):
 
 
 
-def sbatch_type(sbatch_com, sb_copy):
+def sbatch_type(sbatch_com, sb_loc, job_type):
 	#adds the command to run run_md.py as a slurm job. needs to know the job type and the new sbatch script (sb_copy)
     job_command = " run_lib.py " + job_type #will only work on supercomputers. but that's the whole point of slurm
     replace_line = "srun -N $SLURM_JOB_NUM_NODES -n $SLURM_NTASKS -c $SLURM_CPUS_PER_TASK -m block:block:block python3"
 
-    subprocess.run(["sed", "-i", 's/\\({}\\).*/\\1{}/'.format(replace_line, job_command), sb_copy])
+    subprocess.run(["sed", "-i", 's/\\({}\\).*/\\1{}/'.format(replace_line, job_command), sb_loc])
 	#check sbatch_jobname for documentation on how this command works.
 	#important difference is it replaces the hole line with the new_line variable.
 

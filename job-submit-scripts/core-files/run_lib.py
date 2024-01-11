@@ -2,31 +2,53 @@
 #run_lib.py 08/01/2024 thomas crow. a library to run each step of a gromacs simulations. minimization, equilibration and production. uses gromacs_lib.py which must be in same dir.
 #mdp, coord topology, and itp forcefields should all be included in the same directory
 
-#import glob
 import sys
-from gmx_lib import *
 import subprocess
-import glob
+
+try:
+    from gmx_lib import *
+except:
+    print("gmx_lib not found. ensure it is in the same dir as run_lib")
+
 
 #this is just an input for error handling to be implemented
 file_name = __file__
 file_list = file_name.split("/")
 file_name = file_list[-1]
 
+#input defined by mdx.sh. [0] is run_lib.py [1] is the input par [2] and [3] are pathnames
+usr_in = sys.argv[1].lower()
+run_type = sys.argv[2].lower() #gmx or gmx_mpi_d
 core_dir = sys.argv[3]
-core_coord = glob.glob(f"{core_dir}/*.pdb")
-core_coord = str(core_coord[0])
-print(core_coord)
-run_type = "gmx"
-#run_type = "gmx_mpi_d" #for when on supercomputer
-top_in = core_dir + ".top"
-#top_in = "L21hybrid_bilayer_Kions_topol.top"
-#topology and pdb file should be included in the same directory as this file.
+core_path = core_dir + "/"
+run_dir = sys.argv[4] 
 
-#minimization run
 
-def minimization_run(run_type, coord_in, top_in):
-    mdp_in = "en_min.mdp" 
+def run_step(usr_in):
+    #defines which stage of the simulation you are running, from position 1 of the input argument
+    print("run_lib.py 08/01/2024 a script for running gromacs. user input required to determine step: min/eq1/eq2/295/305 \n")
+    if usr_in == 'min':
+        minimization_run(run_type, coord_in, top_in, core_path)
+        run_mdrun(run_type, "en_min", "min", core_dir, run_dir) #run type, tpr file, job type for sbatch
+    elif usr_in == 'eq1':
+        eq1_run(run_type, top_in, core_path)
+        run_mdrun(run_type, "premd1", "eq1", core_dir, run_dir)
+    elif usr_in == 'eq2':
+        eq2_run(run_type, top_in, core_path)
+        run_mdrun(run_type, "premd2", "eq2", core_dir, run_dir)
+    elif usr_in == '295':
+        prod295_run(run_type, top_in, core_path)
+        run_mdrun(run_type, "md_295", "295", core_dir, run_dir)
+    elif usr_in == '305':
+        prod305_run(run_type, top_in, core_path)
+        run_mdrun(run_type, "md_305", "305", core_dir, run_dir)
+    else:
+        print ('Incorrect input. please enter min/eq1/eq2/295 or 305.')
+
+
+
+def minimization_run(run_type, coord_in, top_in, run_dir):
+    mdp_in = run_dir + "en_min.mdp" 
     deff_nm = mdp_in.split(".")[0] #naming scheme for the run used by gmx in next step
     rest_op = None
     input_list = [coord_in, top_in, mdp_in, deff_nm, rest_op]
@@ -39,9 +61,9 @@ def minimization_run(run_type, coord_in, top_in):
 
 #equilibration with restraints on lipid bilayer
 
-def eq1_run(run_type, top_in):
-    coord_in = "../en_min.gro"
-    mdp_in = "premd1.mdp" 
+def eq1_run(run_type, top_in, run_dir):
+    coord_in = "en_min.gro"
+    mdp_in = run_dir + "premd1.mdp" 
     deff_nm = mdp_in.split(".")[0] #naming scheme for the run used by gmx in next step
     tpr_input = deff_nm + ".tpr"
     rest_op = coord_in
@@ -55,14 +77,14 @@ def eq1_run(run_type, top_in):
 
 #removing restraint and continue equilibration
 
-def eq2_run(run_type, top_in):
-    coord_in = "../premd1.gro"
-    mdp_in = "premd2.mdp" 
+def eq2_run(run_type, top_in, run_dir):
+    coord_in = "premd1.gro"
+    mdp_in = run_dir + "premd2.mdp" 
     deff_nm = mdp_in.split(".")[0] #naming scheme for the run used by gmx in next step
     tpr_input = deff_nm + ".tpr"
-    rest_op = None
+    rest_op = "No"
     input_list = [coord_in, top_in, mdp_in, deff_nm, rest_op]
-    grompp_stage = True 
+    grompp_stage = "eq" 
 
     grompp_input = inp_grompp(file_name, *input_list)
     make_index(file_name, run_type, coord_in)
@@ -71,11 +93,11 @@ def eq2_run(run_type, top_in):
 
 #heating to 295K
 
-def prod295_run(run_type, top_in):
-    coord_in = "../premd2.gro"
-    mdp_in = "md_295.mdp" 
+def prod295_run(run_type, top_in, run_dir):
+    coord_in = "premd2.gro"
+    mdp_in = run_dir + "md_295.mdp" 
     deff_nm = mdp_in.split(".")[0] #naming scheme for the run used by gmx in next step
-    rest_op = None
+    rest_op = "No"
     input_list = [coord_in, top_in, mdp_in, deff_nm, rest_op]
     grompp_stage = True
 
@@ -86,11 +108,11 @@ def prod295_run(run_type, top_in):
 
 #heating to 305K
 
-def prod305_run(run_type, top_in):
+def prod305_run(run_type, top_in, run_dir):
     coord_in = "md_295.gro"
     mdp_in = "md_305.mdp"
     deff_nm = mdp_in.split(".")[0] #naming scheme for the run used by gmx in next step
-    rest_op = None
+    rest_op = "No"
     input_list = [coord_in, top_in, mdp_in, deff_nm, rest_op]
     grompp_stage = True
 
@@ -100,30 +122,8 @@ def prod305_run(run_type, top_in):
 
 
 
+#MD RUN MANAGEMENT COMMANDS
 
-#the below doesn't sem to work well with sbatch
-
-#pass the modelling stage in at command line. should be three-letter input with no spaces. 
-#print("run_lib.py 08/01/2024 a script for running gromacs. user input required to determine step: min/eq1/eq2/295/305 \n")
-#usr_in = sys.argv[1].lower()
-
-#if usr_in == 'min':
-#    minimization_run(run_type, top_in)
-#    run_mdrun(run_type, "en_min")
-#elif usr_in == 'eq1':
-#eq1_run(run_type, top_in)
-#run_mdrun(run_type, "premd1")
-#elif usr_in == 'eq2':
-#    eq2_run(run_type, top_in)
-#    run_mdrun(run_type, "premd2")
-#elif usr_in == '295':
-#    prod295_run(run_type, top_in)
-#    run_mdrun(run_type, "md_295")
-#elif usr_in == '305':
-#    prod305_run(run_type, top_in)
-#    run_mdrun(run_type, "md_305")
-#else:
-#    print ('Incorrect input. please enter min/eq1/eq2/295 or 305.')
-
-
-#analysis
+#finds the initial pdb and top files for minimization run
+coord_in, top_in = find_pdb(core_dir)
+run_step(usr_in)
