@@ -1,6 +1,6 @@
 #!/bin/python
 
-
+from pathlib import Path
 import subprocess
 
 #this is just an input for error handling to be implemented
@@ -65,7 +65,6 @@ def make_index (file_name, run_type, coord_in):
 
 def inp_grompp (file_name, coord_in, top_in, mdp_in, deff_nm, rest_op):
     #handles the input parameters for grompp. forcefield and coords are hard-coded but mdp must be specified.
-    
     par_list = ["-f", mdp_in, "-c", coord_in, "-p", top_in, "-o", deff_nm] #, rstrt_out, index_out]
     
     #command looks like gmx grompp -f min.mdp -c coord.pdb -p topology.top -o deffnm
@@ -89,18 +88,20 @@ def run_grompp (file_name, run_type,  par_list, grompp_stage):
         print ("No index file input")
     else:
         args_list.extend(['-n', 'index.ndx'])
-    try:
-        subprocess.run(args_list)
+    #try:
+    subprocess.run(args_list)
+    print(args_list) 
+    print(" is now running from run_grompp")
         #needs clearer error handling
-    except subprocess.CalledProcessError as e:
-        print(' ProcessError in ' + file_name + ' run_grompp: {e}')
-    except Exception as error:
-        print(f'An unexpected error occured in ' + file_name + 
-              ' run_grompp: {error}')
+    #except subprocess.CalledProcessError as e:
+    #    print(' ProcessError in ' + file_name + ' run_grompp: {e}')
+    #except Exception as error:
+     #   print(f'An unexpected error occured in ' + file_name + 
+      #        ' run_grompp: {e}')
 
 
     
-def run_mdrun (run_type, deff_input, job_type, core_dir, run_dir):
+def run_mdrun (run_type, deff_input, job_type, core_path, run_path):
     # runs molecular dynamics from an input .tpr file generated in run_grompp. deff_nm should be formatted wihout the '.tpr'
     #feeds into make_sbatch.py
     sbatch_com = run_type + ' mdrun -deffnm ' + deff_input + ' -cpi -maxh 24.2'
@@ -109,9 +110,19 @@ def run_mdrun (run_type, deff_input, job_type, core_dir, run_dir):
     
     #check a job type was actually input, then create the sbatch file using make_sbatch.py
     if job_type != "No":
-        job_name, sb_loc = sbatch_copy(job_type, run_dir, core_dir) #copy sbatch template and rename the copy #jobtype, rundir, coredir vars needed
+        job_name, sb_loc = sbatch_copy(job_type, run_path, core_path) #copy sbatch template and rename the copy #jobtype, rundir, coredir vars needed
         sbatch_jobname(job_name, sb_loc) #change the jobname field in the sbatch script
         sbatch_type(sbatch_com, sb_loc, job_type) #change the srun command in script
 
     else:
-        print ("Failed to define job type! Quiting...") 
+        print ("Failed to define run_mdrun job type! Quiting...") 
+
+
+
+
+def run_gmx_min (run_type, deff_input, job_type, core_dir, run_dir): #job type and dir information not needed, but makes it easy to switch to run_mdrun function
+    # a script that runs a gromacs mdrun session. useful for minimization or local PC runs
+    #tpr_in = core_dir + deff_input + ".tpr"
+    #print(tpr_in)
+    subprocess.run([run_type, "mdrun", "-deffnm", deff_input, "-cpi", "-maxh", "24.2"])
+
