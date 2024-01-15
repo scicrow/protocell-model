@@ -2,7 +2,7 @@ integrator              = md
 constraints             = h-bonds
 constraint-algorithm    = lincs
 dt                      = 0.002
-nsteps                  = 250
+nsteps                  = 5000000
 nstcomm                 = 100
 
 pbc                     = xyz 
