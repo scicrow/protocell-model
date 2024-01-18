@@ -1,5 +1,7 @@
 #!/bin/bash
 
+module load gromacs/2023
+
 run_dir=$(pwd)
 core_dir=$run_dir"/core-files"
 

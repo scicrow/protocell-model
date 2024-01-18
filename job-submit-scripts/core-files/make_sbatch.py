@@ -52,7 +52,7 @@ def sbatch_jobname(job_name, sb_loc):
 
 
 
-def sbatch_type(sbatch_com, sb_loc, sbatch_input):
+def sbatch_type(sb_loc, sbatch_input):
 	#adds the command to run run_md.py as a slurm job. needs to know the job type and the new sbatch script (sb_copy)
     replace_line = "srun -N $SLURM_JOB_NUM_NODES -n $SLURM_NTASKS -c $SLURM_CPUS_PER_TASK -m block:block:block "
 

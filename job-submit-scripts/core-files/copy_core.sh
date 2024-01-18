@@ -13,3 +13,4 @@ echo "$run_dir created and $cur_dir copied into it."
 core_dir=$run_dir"/core-files"
 
 mv $core_dir"/mdx.sh" $run_dir
+mv $core_dir"/runsbatch.sh" $run_dir

@@ -112,7 +112,7 @@ def run_mdrun (run_type, deff_input, job_type, core_path, run_path):
     if job_type != "No":
         job_name, sb_loc = sbatch_copy(job_type, run_path, core_path) #copy sbatch template and rename the copy #jobtype, rundir, coredir vars needed
         sbatch_jobname(job_name, sb_loc) #change the jobname field in the sbatch script
-        sbatch_type(sbatch_com, sb_loc, sbatch_input) #change the srun command in script
+        sbatch_type(sb_loc, sbatch_input) #change the srun command in script
 
     else:
         print ("Failed to define run_mdrun job type! Quiting...") 
