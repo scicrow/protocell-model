@@ -21,7 +21,7 @@ def sbatch_copy(job_type, run_dir, core_dir): #inputs = job_type
 	sb_name = now.strftime("%m%d")
 
 	job_name = job_type  + "_" + sb_name 
-	sb_copy = sb_name + job_type + ".sbatch" #sbatch job name
+	sb_copy = job_type + ".sbatch" #sbatch job name
 	sb_location = run_dir + "/" + sb_copy # location should be in run directory
 
 	#create copy of template sbatch file

@@ -32,12 +32,12 @@ def run_step(usr_in, top_in, coord_in, run_type, core_path, run_path):
     if usr_in == 'min':
         minimization_run(run_type, coord_in, top_in, core_path, run_path)
         run_gmx_min(run_type, "en_min", "min", core_path, run_path) #run type, tpr file, job type for sbatch
-    elif usr_in == 'eq1':
+    elif usr_in == 'premd1':
         eq1_run(run_type, top_in, core_path, run_path)
-        run_mdrun(run_type, "premd1", "eq1", core_path, run_path)
-    elif usr_in == 'eq2':
+        run_mdrun(run_type, "premd1", "premd1", core_path, run_path)
+    elif usr_in == 'premd2':
         eq2_run(run_type, top_in, core_path, run_path)
-        run_mdrun(run_type, "premd2", "eq2", core_path, run_path)
+        run_mdrun(run_type, "premd2", "premd2", core_path, run_path)
     elif usr_in == '295':
         prod295_run(run_type, top_in, core_path, run_path)
         run_mdrun(run_type, "md_295", "295", core_path, run_path)
