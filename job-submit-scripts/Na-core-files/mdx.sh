@@ -3,7 +3,7 @@
 module load gromacs/2023
 
 run_dir=$(pwd)
-core_dir=$run_dir"/K-core-files"
+core_dir=$run_dir"/Na-core-files"
 run_type=$@
 
 

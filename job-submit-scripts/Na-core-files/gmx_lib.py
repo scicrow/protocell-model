@@ -54,11 +54,11 @@ def make_index (file_name, run_type, coord_in):
    commands = """
    r DCN
    r DCA | r DCN
-   r SOL | r K  | r Cl
+   r SOL | r NA  | r CL
    name 10 Water_and_ions
    q 
    """
-   index_name = "index_" + run_type + ".ndx"
+   index_name = "index.ndx"
    #shell=true necessary for this file format. otherwise, wont interpret this line as text.
    subprocess.run(f"echo '{commands}' | {run_type} make_ndx -f {coord_in} -o {index_name}", shell=True)
 
