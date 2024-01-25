@@ -28,7 +28,7 @@ input_list = [usr_in, run_type, core_path, run_path]
 def run_step(usr_in, top_in, coord_in, run_type, core_path, run_path):
     #defines which stage of the simulation you are running, from position 1 of the input argument
     #run_mdrun makes an sbatch file. run_gmx_min just runs mdrun
-    print("run_lib.py 08/01/2024 a script for running gromacs. user input required to determine step: min/eq1/eq2/295/305 \n")
+    print("run_lib.py 08/01/2024 a script for running gromacs. user input required to determine step: min/premd1/premd2/295/305 \n")
     if usr_in == 'min':
         minimization_run(run_type, coord_in, top_in, core_path, run_path)
         run_gmx_min(run_type, "en_min", "min", core_path, run_path) #run type, tpr file, job type for sbatch

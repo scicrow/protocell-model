@@ -50,16 +50,17 @@ def find_pdb(core_dir):
 
 
 def make_index (file_name, run_type, coord_in):
-   #Create index file. not needed for min step?
+   #Create index file. not needed for min step? must be Cl K Na not all caps for ion names
    commands = """
    r DCN
    r DCA | r DCN
-   r SOL | r K  | r CL
+   r SOL | r K  | r Cl
    name 10 Water_and_ions
    q 
    """
+   index_name = "index_" + run_type + ".ndx"
    #shell=true necessary for this file format. otherwise, wont interpret this line as text.
-   subprocess.run(f"echo '{commands}' | {run_type} make_ndx -f {coord_in} -o index.ndx", shell=True)
+   subprocess.run(f"echo '{commands}' | {run_type} make_ndx -f {coord_in} -o {index_name}", shell=True)
 
 
 
