@@ -16,11 +16,7 @@ def sbatch_copy(job_type, run_dir, core_dir): #inputs = job_type
 	#copies a template sbatch script, making a new one with new job name based on input and timestamp.	
 	sbatch_submit = core_dir + "/sbatch_template"
 	
-	#timestamps the job
-	now = datetime.now()
-	sb_name = now.strftime("%m%d")
-
-	job_name = job_type  + "_" + sb_name 
+	job_name = job_type
 	sb_copy = job_type + ".sbatch" #sbatch job name
 	sb_location = run_dir + "/" + sb_copy # location should be in run directory
 
