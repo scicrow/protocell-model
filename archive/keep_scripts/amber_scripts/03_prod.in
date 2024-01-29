@@ -1,0 +1,34 @@
+Production
+ &cntrl
+  imin=0, 		! Not an energy minimization
+  ntx=5,		! option to read initial coords, velocities and box size from inpcrd file. 
+			! 1 = cooords but not velocities. 5=coords and velocities
+  irest=1,		! ! flag to restart simulation. 0 = no restart but run as a new sim. 
+			! 1 = it's a restart and timestep and velocities read in. 
+  nstlim=3000,		! Number of MD steps to be perfomed. default = 1
+  dt=0.001,		! timstep (ps) max is 0.002 if SHAKE is used, or 0.001 if not. above 300K step size should be reduced. 
+			! H-Mass repartitioning and together with SHAKE allow time step to be increased...
+			! in a stable fashion by x2 (up to 0.004) by slowing down freq of H motion
+  ntf=2,		! Force evaluation (=2 for hydrogen)
+  ntc=2,		! SHAKE constraints (=2 hydrogen)
+  temp0=300.0,		! reference temp at which system is to be kept. above 300K reduce step size because of SHAKE
+  ntpr=1000,		! mdout and mdinfo files are written every ntpr steps
+  ntwx=1000,		! trajectory file written every ntpr steps
+  cut=8.0,		! cutoff for bonded interactions (angstrom) 
+  ntb=2,		! boundaries (1= constant volume 2 = constant pressure. 0 = no periodic boundary conditions) 
+			! controls whether or not periodic boundaries are imposed. no need to set this variable as it can be determined
+			! from igb and ntp. the proper default for netb is chosen (ntb=0 when igb > 0, ntb=2 when ntp >0 and ntb 1 otherwise) 
+			! if ntb is nonzero there must be a periodic boundary in the topology file. constant pressure is not used when imin=1 
+  ntp=1,		! constant pressure restraint (0= no pressure scaling, 1 = isotropic 2 = anisotropic)
+  ntt=3,		! temperature scaling (constant total energy, 1 = constant T, 2 anderson,  3= langevin dynamics)
+  mcboxshift=10,	! trims so water is moved away from the box edge to stop uninteresting water periodic movements
+			! if system was prepared with cubic pbc box with equal solvent padding on all three axes,
+			! it is recommended this is set to amount of padding. default is 10 angstroms
+  barostat=1,		! flag used to control which barostat for pressure control. 1=berendsen 2 =monte carlo barostat
+  csurften=0,		! flag for constant surface tension dynamics. 0=none (default), 1=yz plane, 2=xz plane, 3=xy plane
+  gamma_ln=2.0,		! surface tension value in dyne/cm. default is 0
+  ig=-1,		! seed for psuedo random number generatory. MD start velocity depends on it if tempi nonzero and ntx- 1... 
+			! also affects values used for langevin dynamics and andersen coupling. 
+			! should be set to a different value on each restart.
+			! ig=-1 means it's based on date and time. don't change this unless you need reproducibility.
+ /
