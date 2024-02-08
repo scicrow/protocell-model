@@ -54,7 +54,7 @@ def make_index (file_name, run_type, coord_in):
    commands = """
    r LAU
    r LAUP | r LAU
-   r SOL | r K  | r CL
+   r TIP3 | r POT
    name 10 Water_and_ions
    q 
    """

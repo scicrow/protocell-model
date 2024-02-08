@@ -5,7 +5,7 @@ module unload cray-libsci
 module load openblas/0.3.21
 
 run_dir=$(pwd)
-core_dir=$run_dir"/K-core-files"
+core_dir=$run_dir"/Lau-core-files"
 run_type=$@
 
 

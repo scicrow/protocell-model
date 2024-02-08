@@ -45,7 +45,7 @@ def run_step(usr_in, top_in, coord_in, run_type, core_path, run_path):
         prod305_run(run_type, top_in, core_path, run_path)
         run_mdrun(run_type, "md_305", "305", core_path, run_path)
     else:
-        print ('Incorrect input. please enter min/eq1/eq2/295 or 305.')
+        print ('Incorrect input. please enter min/premd1/premd2/295 or 305.')
 
 
 

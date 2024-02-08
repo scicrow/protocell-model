@@ -1,0 +1,28 @@
+* Reads the DCA residue from the stream topology file and writes a pdb consisting
+* of a single DCA molecule
+*
+
+!read topology and parameter files
+!stream toppar.str
+open read card unit 10 name toppar/top_all36_lipid.rtf
+read rtf card unit 10
+
+open read card unit 20 name toppar/par_all36_lipid.prm
+
+stream top_dca.str
+
+read sequence DCA 1
+generate DCA
+
+ic generate
+ic param
+ic seed 1 C1 1 C2 1 C3 !to generate box CHARMM must know coords of at least three atoms defined by top file
+ic build
+
+open write card unit 30 name DCA_build.pdb
+
+write coor pdb  unit 30
+
+close unit 30
+
+

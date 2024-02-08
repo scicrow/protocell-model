@@ -13,7 +13,7 @@ dir_name="${dir_array[-1]}"
 unset IFS
 
 
-run_dir="$parent_dir/$time_stamp"'_Kions'
+run_dir="$parent_dir/$time_stamp"'_0mM_Lauric'
 
 mkdir $run_dir
 cd $run_dir

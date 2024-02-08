@@ -1,0 +1,37 @@
+REMARK  READS THE DCA RESIDUE FROM THE STREAM TOPOLOGY FILE AND WRITES A PDB CONSISTIN
+REMARK  OF A SINGLE DCA MOLECULE                                                      
+REMARK   DATE:     2/ 8/24     16:57:12      CREATED BY USER: thomas                  
+ATOM      1  H1  DECA    1      -1.447  -1.387  -0.000  1.00  0.00      DECA
+ATOM      2  O1  DECA    1      -0.490  -1.311  -0.000  1.00  0.00      DECA
+ATOM      3  O2  DECA    1      -0.726   0.981  -0.000  1.00  0.00      DECA
+ATOM      4  C1  DECA    1       0.000   0.000   0.000  1.00  0.00      DECA
+ATOM      5  C2  DECA    1       1.522   0.000   0.000  1.00  0.00      DECA
+ATOM      6  H2R DECA    1       1.893  -0.524   0.907  1.00  0.00      DECA
+ATOM      7  H2S DECA    1       1.893   1.047  -0.000  1.00  0.00      DECA
+ATOM      8  C3  DECA    1       1.995   1.455   0.000  1.00  0.00      DECA
+ATOM      9  H3R DECA    1       1.617   1.979  -0.904  1.00  0.00      DECA
+ATOM     10  H3S DECA    1       3.105   1.496   0.000  1.00  0.00      DECA
+ATOM     11  C4  DECA    1       3.517   1.604   0.000  1.00  0.00      DECA
+ATOM     12  H4R DECA    1       3.948   1.122   0.904  1.00  0.00      DECA
+ATOM     13  H4S DECA    1       3.796   2.680   0.000  1.00  0.00      DECA
+ATOM     14  C5  DECA    1       3.990   3.060   0.000  1.00  0.00      DECA
+ATOM     15  H5R DECA    1       3.612   3.584  -0.904  1.00  0.00      DECA
+ATOM     16  H5S DECA    1       5.101   3.100   0.000  1.00  0.00      DECA
+ATOM     17  C6  DECA    1       5.513   3.209   0.000  1.00  0.00      DECA
+ATOM     18  H6R DECA    1       5.944   2.727   0.904  1.00  0.00      DECA
+ATOM     19  H6S DECA    1       5.791   4.284  -0.000  1.00  0.00      DECA
+ATOM     20  C7  DECA    1       5.986   4.664   0.000  1.00  0.00      DECA
+ATOM     21  H7R DECA    1       5.608   5.188  -0.904  1.00  0.00      DECA
+ATOM     22  H7S DECA    1       7.096   4.705   0.000  1.00  0.00      DECA
+ATOM     23  C8  DECA    1       7.508   4.813   0.000  1.00  0.00      DECA
+ATOM     24  H8R DECA    1       7.939   4.331   0.904  1.00  0.00      DECA
+ATOM     25  H8S DECA    1       7.787   5.889   0.000  1.00  0.00      DECA
+ATOM     26  C9  DECA    1       7.981   6.268   0.000  1.00  0.00      DECA
+ATOM     27  H9R DECA    1       7.603   6.793  -0.904  1.00  0.00      DECA
+ATOM     28  H9S DECA    1       9.092   6.309   0.000  1.00  0.00      DECA
+ATOM     29  C10 DECA    1       9.498   6.455   0.000  1.00  0.00      DECA
+ATOM     30 H10S DECA    1       9.940   5.983   0.904  1.00  0.00      DECA
+ATOM     31 H10R DECA    1       9.750   7.537   0.000  1.00  0.00      DECA
+ATOM     32 H10T DECA    1       9.940   5.983  -0.904  1.00  0.00      DECA
+TER      33      DECA     1
+END
