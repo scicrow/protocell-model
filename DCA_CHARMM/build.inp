@@ -4,7 +4,7 @@
 
 !topology and parameter files
 
-stream toppar.str
+stream toppar_custom.str
 
 read sequence DECA 1
 generate DECA
@@ -14,10 +14,18 @@ generate DECA
 
 ic generate
 ic param
-ic seed 1 C1 1 C2 1 C3 !to generate box CHARMM must know coords of at least three atoms defined by top file
+ic seed 1 C1 1 C2 1 C3 !needs three atoms to generate box
 ic build
+coor init selec hydrogen end
+hbuild sele hydrogen end
 
-open write card unit 10 name DCA_build.pdb
-write coor pdb  unit 10
 
+open write card unit 10 name dca_build.psf
+write psf unit 10
+
+open write card unit 20 name dca_build.cor
+write coor card unit 20
+
+!open write card unit 10 name dca_build.pdb
+!write coor pdb unit 10
 

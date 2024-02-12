@@ -10,5 +10,5 @@ open read card unit 20 name toppar/par_all36_lipid.prm
 read para card unit 20
 
 !CUSTOM TOPOLOGY THOMAS CROW 2023 includes DCA and DCN
-stream topdca_lauic.str
+stream top_dca.str
 

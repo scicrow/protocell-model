@@ -12,7 +12,7 @@ read rtf card append
 *
 41  1
 
-AUTOGENERATE ANGLE DIHE
+AUTO ANGLE DIHE
 
 RESI DECA        0.00 ! Decanoic Acid (10:0)
 GROUP	              !
