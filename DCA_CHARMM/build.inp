@@ -6,11 +6,11 @@
 
 stream toppar_custom.str
 
-read sequence DECA 1
-generate DECA
+!read sequence DECA 1
+!generate DECA
 
-!read sequence DECN 1
-!generate DECN
+read sequence DECN 1
+generate DECN
 
 ic generate
 ic param
@@ -20,12 +20,12 @@ coor init selec hydrogen end
 hbuild sele hydrogen end
 
 
-open write card unit 10 name dca_build.psf
+open write card unit 10 name dcn_build.psf
 write psf unit 10
 
-open write card unit 20 name dca_build.cor
+open write card unit 20 name dcn_build.cor
 write coor card unit 20
 
-!open write card unit 10 name dca_build.pdb
+!open write card unit 10 name dcn_build.pdb
 !write coor pdb unit 10
 
