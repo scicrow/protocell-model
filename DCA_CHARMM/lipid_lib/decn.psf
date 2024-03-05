@@ -3,7 +3,7 @@ PSF CMAP XPLOR
        3 !NTITLE
 * READS THE DCA RESIDUE FROM THE STREAM TOPOLOGY FILE AND WRITES A PDB CONSISTIN
 * OF A SINGLE DCA MOLECULE                                                      
-*  DATE:     3/ 1/24     16:37:20      CREATED BY USER: thomas                  
+*  DATE:     3/ 5/24     17:19:15      CREATED BY USER: thomas                  
 
       31 !NATOM
        1 DECN 1    DECN O1   OCL   -0.760000       15.9994           0

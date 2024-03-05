@@ -3,8 +3,8 @@
 * 
 
 ! lipids
-open read card unit 10 name toppar/top_all36_lipid.rtf
-read  rtf card unit 10 append
+open read card unit 10 name toppar/top_tom_lipid.rtf
+read  rtf card unit 10 flex
 
 open read card unit 20 name toppar/par_all36_lipid.prm
 read para card unit 20 flex

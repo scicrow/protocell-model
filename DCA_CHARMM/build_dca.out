@@ -5,7 +5,7 @@
        Copyright(c) 1984-2023  President and Fellows of Harvard College
                               All Rights Reserved
   Current operating system: Linux-4.4.0-19041-Microsoft(x86_64)@C-A0042747.st   
-                 Created on  3/1/24 at 16:37:19 by user: thomas      
+                 Created on  3/5/24 at 17:19:15 by user: thomas      
 
             Maximum number of ATOMS:    360720, and RESidues:      120240
  RDTITL> * READS THE DCA RESIDUE FROM THE STREAM TOPOLOGY FILE AND WRITES A PDB CONSISTING
@@ -30,11 +30,11 @@
  CHARMM>     
   
  CHARMM>    ! lipids
- CHARMM>    open read card unit 10 name toppar/top_all36_lipid.rtf
- VOPEN> Attempting to open::toppar/top_all36_lipid.rtf::
- OPNLGU> Unit 10 opened for READONLY access to toppar/top_all36_lipid.rtf
+ CHARMM>    open read card unit 10 name toppar/top_tom_lipid.rtf
+ VOPEN> Attempting to open::toppar/top_tom_lipid.rtf::
+ OPNLGU> Unit 10 opened for READONLY access to toppar/top_tom_lipid.rtf
   
- CHARMM>    read  rtf card unit 10
+ CHARMM>    read  rtf card unit 10 flex
  MAINIO> Residue topology file being read from unit  10.
  TITLE> *  \\\\\\\ CHARMM36 ALL-HYDROGEN LIPID TOPOLOGY FILE ///////
  TITLE> *  ALL COMMENTS AND QUESTIONS SHOULD BE SUBMITTED TO THE
@@ -47,7 +47,7 @@
  VOPEN> Attempting to open::toppar/par_all36_lipid.prm::
  OPNLGU> Unit 20 opened for READONLY access to toppar/par_all36_lipid.prm
   
- CHARMM>    read para card unit 20
+ CHARMM>    read para card unit 20 flex
 
           PARAMETER FILE BEING READ FROM UNIT 20
  TITLE> *  \\\\\\\ CHARMM36 ALL-HYDROGEN LIPID PARAMETER FILE ///////
@@ -84,7 +84,6 @@
   
  CHARMM>     
   
- CHARMM>    return
  VCLOSE: Closing unit   98 with status "KEEP"
 
                     RETURNING TO INPUT STREAM    99
@@ -218,9 +217,12 @@
  OPNLGU> Unit 10 opened for WRITE access to ./lipid_lib/deca.psf
   
  CHARMM>    write psf unit 10
- RDTITL>  
+ RDTITL> CLOSE UNIT 10
  RDTITL> No title read.
  VCLOSE: Closing unit   10 with status "KEEP"
+  
+ CHARMM>    close unit 10
+ CLOLGU>  *****  WARNING  ***** Attempt to close unit that was not open.
   
  CHARMM>     
   
@@ -231,18 +233,33 @@
  OPNLGU> Unit 20 opened for WRITE access to ./lipid_lib/deca.crd
   
  CHARMM>    write coor card unit 20
- RDTITL>  
+ RDTITL> CLOSE UNIT 20
  RDTITL> No title read.
  VCLOSE: Closing unit   20 with status "KEEP"
   
+ CHARMM>    close unit 20
+ CLOLGU>  *****  WARNING  ***** Attempt to close unit that was not open.
+  
  CHARMM>     
   
+ CHARMM>    open write card unit 20 name ./lipid_lib/deca.pdb
+ VOPEN> Attempting to open::./lipid_lib/deca.pdb::
+ OPNLGU> Unit 20 opened for WRITE access to ./lipid_lib/deca.pdb
+  
+ CHARMM>    write coor pdb unit 20
+ RDTITL> CLOSE UNIT 20
+ RDTITL> No title read.
+  Write CHARMM-pdb format
+  
+ CHARMM>    close unit 20
+ VCLOSE: Closing unit   20 with status "KEEP"
+  
 $$$$$$  New timer profile $$$$$
- Total time                      0.19 Other:            0.00
+ Total time                      0.11 Other:            0.00
 
                     NORMAL TERMINATION BY END OF FILE
                     NO WARNINGS WERE ISSUED
 
                     $$$$$ JOB ACCOUNTING INFORMATION $$$$$
-                     ELAPSED TIME:     0.19  SECONDS 
+                     ELAPSED TIME:     0.11  SECONDS 
                          CPU TIME:     0.11  SECONDS 

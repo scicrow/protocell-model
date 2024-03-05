@@ -19,7 +19,12 @@ hbuild sele hydrogen end
 
 open write card unit 10 name ./lipid_lib/deca.psf
 write psf unit 10
+close unit 10
 
 open write card unit 20 name ./lipid_lib/deca.crd
 write coor card unit 20
+close unit 20
 
+open write card unit 20 name ./lipid_lib/deca.pdb
+write coor pdb unit 20
+close unit 20
