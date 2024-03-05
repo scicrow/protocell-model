@@ -5,7 +5,7 @@
        Copyright(c) 1984-2023  President and Fellows of Harvard College
                               All Rights Reserved
   Current operating system: Linux-4.4.0-19041-Microsoft(x86_64)@C-A0042747.st   
-                 Created on  2/12/24 at 14:50:41 by user: thomas      
+                 Created on  3/1/24 at 15:35:14 by user: thomas      
 
             Maximum number of ATOMS:    360720, and RESidues:      120240
  RDTITL> * READS THE DCA RESIDUE FROM THE STREAM TOPOLOGY FILE AND WRITES A PDB CONSISTING
@@ -59,9 +59,9 @@
  CHARMM>     
   
  CHARMM>    !CUSTOM TOPOLOGY THOMAS CROW 2023 includes DCA and DCN
- CHARMM>    stream top_dca.str
- VOPEN> Attempting to open::top_dca.str::
- OPNLGU> Unit 98 opened for READONLY access to top_dca.str
+ CHARMM>    stream top_deca.str
+ VOPEN> Attempting to open::top_deca.str::
+ OPNLGU> Unit 98 opened for READONLY access to top_deca.str
 
                     INPUT STREAM SWITCHING TO UNIT    98
  RDTITL> * TOPOLOGY FILE FOR DECANOIC ACID AND DECANOATE
@@ -97,27 +97,23 @@
   
  CHARMM>     
   
- CHARMM>    read sequence DECA 1
+ CHARMM>    read sequence DECN 1
   
- CHARMM>    generate DECA
+ CHARMM>    generate DECN
  NO PATCHING WILL BE DONE ON THE FIRST RESIDUE
  NO PATCHING WILL BE DONE ON THE LAST  RESIDUE
  AUTGEN: Autogenerating specified angles and dihedrals.
- GENPSF> Segment   1 has been generated. Its identifier is DECA.
+ GENPSF> Segment   1 has been generated. Its identifier is DECN.
  PSFSUM> PSF modified: NONBOND lists and IMAGE atoms cleared.
  PSFSUM> Summary of the structure file counters :
          Number of segments      =        1   Number of residues   =        1
-         Number of atoms         =       32   Number of groups     =        9
-         Number of bonds         =       31   Number of angles     =       58
-         Number of dihedrals     =       80   Number of impropers  =        1
+         Number of atoms         =       31   Number of groups     =        9
+         Number of bonds         =       30   Number of angles     =       57
+         Number of dihedrals     =       78   Number of impropers  =        1
          Number of cross-terms   =        0   Number of autogens   =        0
          Number of HB acceptors  =        0   Number of HB donors  =        0
-         Number of NB exclusions =        0   Total charge =   -0.00000
+         Number of NB exclusions =        0   Total charge =   -1.00000
   
- CHARMM>     
-  
- CHARMM>    !read sequence DECN 1
- CHARMM>    !generate DECN
  CHARMM>     
   
  CHARMM>    ic generate
@@ -126,35 +122,34 @@
 
    N     I       J       K       L   R(I(J/K)) T(I(JK/KJ)) PHI   T(JKL)   R(KL)
 
-    1   1 H1    1 O1    1 C1    1 C2     0.0000    0.00  180.00    0.00   0.0000
-    2   1 C2    1 O1    1 *C1   1 O2     0.0000    0.00  180.00    0.00   0.0000
-    3   1 O1    1 C1    1 C2    1 C3     0.0000    0.00  180.00    0.00   0.0000
-    4   1 C3    1 C1    1 *C2   1 H2R    0.0000    0.00  120.00    0.00   0.0000
-    5   1 H2R   1 C1    1 *C2   1 H2S    0.0000    0.00 -120.00    0.00   0.0000
-    6   1 C1    1 C2    1 C3    1 C4     0.0000    0.00  180.00    0.00   0.0000
-    7   1 C4    1 C2    1 *C3   1 H3R    0.0000    0.00  120.00    0.00   0.0000
-    8   1 H3R   1 C2    1 *C3   1 H3S    0.0000    0.00 -120.00    0.00   0.0000
-    9   1 C2    1 C3    1 C4    1 C5     0.0000    0.00  180.00    0.00   0.0000
-   10   1 C5    1 C3    1 *C4   1 H4R    0.0000    0.00  120.00    0.00   0.0000
-   11   1 H4R   1 C3    1 *C4   1 H4S    0.0000    0.00 -120.00    0.00   0.0000
-   12   1 C3    1 C4    1 C5    1 C6     0.0000    0.00  180.00    0.00   0.0000
-   13   1 C6    1 C4    1 *C5   1 H5R    0.0000    0.00  120.00    0.00   0.0000
-   14   1 H5R   1 C4    1 *C5   1 H5S    0.0000    0.00 -120.00    0.00   0.0000
-   15   1 C4    1 C5    1 C6    1 C7     0.0000    0.00  180.00    0.00   0.0000
-   16   1 C7    1 C5    1 *C6   1 H6R    0.0000    0.00  120.00    0.00   0.0000
-   17   1 H6R   1 C5    1 *C6   1 H6S    0.0000    0.00 -120.00    0.00   0.0000
-   18   1 C5    1 C6    1 C7    1 C8     0.0000    0.00  180.00    0.00   0.0000
-   19   1 C8    1 C6    1 *C7   1 H7R    0.0000    0.00  120.00    0.00   0.0000
-   20   1 H7R   1 C6    1 *C7   1 H7S    0.0000    0.00 -120.00    0.00   0.0000
-   21   1 C6    1 C7    1 C8    1 C9     0.0000    0.00  180.00    0.00   0.0000
-   22   1 C9    1 C7    1 *C8   1 H8R    0.0000    0.00  120.00    0.00   0.0000
-   23   1 H8R   1 C7    1 *C8   1 H8S    0.0000    0.00 -120.00    0.00   0.0000
-   24   1 C7    1 C8    1 C9    1 C10    0.0000    0.00  180.00    0.00   0.0000
-   25   1 C10   1 C8    1 *C9   1 H9R    0.0000    0.00  120.00    0.00   0.0000
-   26   1 H9R   1 C8    1 *C9   1 H9S    0.0000    0.00 -120.00    0.00   0.0000
-   27   1 C8    1 C9    1 C10   1 H10R   0.0000    0.00  180.00    0.00   0.0000
-   28   1 H10R  1 C9    1 *C10  1 H10S   0.0000    0.00  120.00    0.00   0.0000
-   29   1 H10R  1 C9    1 *C10  1 H10T   0.0000    0.00 -120.00    0.00   0.0000
+    1   1 C2    1 O1    1 *C1   1 O2     0.0000    0.00  180.00    0.00   0.0000
+    2   1 O1    1 C1    1 C2    1 C3     0.0000    0.00  180.00    0.00   0.0000
+    3   1 C3    1 C1    1 *C2   1 H2R    0.0000    0.00  120.00    0.00   0.0000
+    4   1 H2R   1 C1    1 *C2   1 H2S    0.0000    0.00 -120.00    0.00   0.0000
+    5   1 C1    1 C2    1 C3    1 C4     0.0000    0.00  180.00    0.00   0.0000
+    6   1 C4    1 C2    1 *C3   1 H3R    0.0000    0.00  120.00    0.00   0.0000
+    7   1 H3R   1 C2    1 *C3   1 H3S    0.0000    0.00 -120.00    0.00   0.0000
+    8   1 C2    1 C3    1 C4    1 C5     0.0000    0.00  180.00    0.00   0.0000
+    9   1 C5    1 C3    1 *C4   1 H4R    0.0000    0.00  120.00    0.00   0.0000
+   10   1 H4R   1 C3    1 *C4   1 H4S    0.0000    0.00 -120.00    0.00   0.0000
+   11   1 C3    1 C4    1 C5    1 C6     0.0000    0.00  180.00    0.00   0.0000
+   12   1 C6    1 C4    1 *C5   1 H5R    0.0000    0.00  120.00    0.00   0.0000
+   13   1 H5R   1 C4    1 *C5   1 H5S    0.0000    0.00 -120.00    0.00   0.0000
+   14   1 C4    1 C5    1 C6    1 C7     0.0000    0.00  180.00    0.00   0.0000
+   15   1 C7    1 C5    1 *C6   1 H6R    0.0000    0.00  120.00    0.00   0.0000
+   16   1 H6R   1 C5    1 *C6   1 H6S    0.0000    0.00 -120.00    0.00   0.0000
+   17   1 C5    1 C6    1 C7    1 C8     0.0000    0.00  180.00    0.00   0.0000
+   18   1 C8    1 C6    1 *C7   1 H7R    0.0000    0.00  120.00    0.00   0.0000
+   19   1 H7R   1 C6    1 *C7   1 H7S    0.0000    0.00 -120.00    0.00   0.0000
+   20   1 C6    1 C7    1 C8    1 C9     0.0000    0.00  180.00    0.00   0.0000
+   21   1 C9    1 C7    1 *C8   1 H8R    0.0000    0.00  120.00    0.00   0.0000
+   22   1 H8R   1 C7    1 *C8   1 H8S    0.0000    0.00 -120.00    0.00   0.0000
+   23   1 C7    1 C8    1 C9    1 C10    0.0000    0.00  180.00    0.00   0.0000
+   24   1 C10   1 C8    1 *C9   1 H9R    0.0000    0.00  120.00    0.00   0.0000
+   25   1 H9R   1 C8    1 *C9   1 H9S    0.0000    0.00 -120.00    0.00   0.0000
+   26   1 C8    1 C9    1 C10   1 H10R   0.0000    0.00  180.00    0.00   0.0000
+   27   1 H10R  1 C9    1 *C10  1 H10S   0.0000    0.00  120.00    0.00   0.0000
+   28   1 H10R  1 C9    1 *C10  1 H10T   0.0000    0.00 -120.00    0.00   0.0000
   
  CHARMM>    ic param
   
@@ -163,12 +158,12 @@
  CHARMM>    ic build
   
  CHARMM>    coor init selec hydrogen end
- SELRPN>     20 atoms have been selected out of     32
+ SELRPN>     19 atoms have been selected out of     31
  SELECTED COORDINATES INITIALIZED IN THE MAIN SET.
 
   
  CHARMM>    hbuild sele hydrogen end
- SELRPN>     20 atoms have been selected out of     32
+ SELRPN>     19 atoms have been selected out of     31
  PRNHBD: CUToff Hydrogen Bond  distance =    0.5000   Angle =   90.0000
          CuT switching ON HB dist. =     3.5000  OFf HB dist. =    4.0000
          CuT switching ON Hb Angle =    50.0000  OFf Hb Angle =   70.0000
@@ -186,7 +181,7 @@
  NBXMOD =      5
  There are        0 atom  pairs and        0 atom  exclusions.
  There are        0 group pairs and        0 group exclusions.
- <MAKINB> with mode   5 found     89 exclusions and     80 interactions(1-4)
+ <MAKINB> with mode   5 found     87 exclusions and     78 interactions(1-4)
  <MAKGRP> found     21 group exclusions.
 
  CUToff Hydrogen Bond  distance =    0.5000           Angle =   90.0000
@@ -196,30 +191,25 @@
  dihedral PHI STePs for spin =   10.0000
  cutoff for water acceptor search CUTWat=    7.5000
 
- Place: H2R ,H2S ,    , constructed for donor DECA 1    DECA C2  .
- Place: H3R ,H3S ,    , constructed for donor DECA 1    DECA C3  .
- Place: H4R ,H4S ,    , constructed for donor DECA 1    DECA C4  .
- Place: H5R ,H5S ,    , constructed for donor DECA 1    DECA C5  .
- Place: H6R ,H6S ,    , constructed for donor DECA 1    DECA C6  .
- Place: H7R ,H7S ,    , constructed for donor DECA 1    DECA C7  .
- Place: H8R ,H8S ,    , constructed for donor DECA 1    DECA C8  .
- Place: H9R ,H9S ,    , constructed for donor DECA 1    DECA C9  .
+ Place: H2R ,H2S ,    , constructed for donor DECN 1    DECN C2  .
+ Place: H3R ,H3S ,    , constructed for donor DECN 1    DECN C3  .
+ Place: H4R ,H4S ,    , constructed for donor DECN 1    DECN C4  .
+ Place: H5R ,H5S ,    , constructed for donor DECN 1    DECN C5  .
+ Place: H6R ,H6S ,    , constructed for donor DECN 1    DECN C6  .
+ Place: H7R ,H7S ,    , constructed for donor DECN 1    DECN C7  .
+ Place: H8R ,H8S ,    , constructed for donor DECN 1    DECN C8  .
+ Place: H9R ,H9S ,    , constructed for donor DECN 1    DECN C9  .
 
- NBONDX:        26 atom and      0 group interactions within 14.00 A.
- Spin: H1  ,    ,    , constructed for donor DECA 1    DECA O1  .
-
- NBONDX:        81 atom and      0 group interactions within 14.00 A.
- Spin: H10S,H10R,H10T, constructed for donor DECA 1    DECA C10 .
+ NBONDX:        78 atom and      0 group interactions within 14.00 A.
+ Spin: H10S,H10R,H10T, constructed for donor DECN 1    DECN C10 .
   
  CHARMM>     
   
- CHARMM>     
-  
- CHARMM>    open write card unit 10 name dca_build.psf
+ CHARMM>    open write card unit 10 name ./lipid_lib/decn.psf
  OPNLGU> Unit already open. The old file will be closed first.
  VCLOSE: Closing unit   10 with status "KEEP"
- VOPEN> Attempting to open::dca_build.psf::
- OPNLGU> Unit 10 opened for WRITE access to dca_build.psf
+ VOPEN> Attempting to open::./lipid_lib/decn.psf::
+ OPNLGU> Unit 10 opened for WRITE access to ./lipid_lib/decn.psf
   
  CHARMM>    write psf unit 10
  RDTITL>  
@@ -228,11 +218,11 @@
   
  CHARMM>     
   
- CHARMM>    open write card unit 20 name dca_build.cor
+ CHARMM>    open write card unit 20 name ./lipid_lib/decn.crd
  OPNLGU> Unit already open. The old file will be closed first.
  VCLOSE: Closing unit   20 with status "KEEP"
- VOPEN> Attempting to open::dca_build.cor::
- OPNLGU> Unit 20 opened for WRITE access to dca_build.cor
+ VOPEN> Attempting to open::./lipid_lib/decn.crd::
+ OPNLGU> Unit 20 opened for WRITE access to ./lipid_lib/decn.crd
   
  CHARMM>    write coor card unit 20
  RDTITL>  
@@ -241,16 +231,179 @@
   
  CHARMM>     
   
- CHARMM>    !open write card unit 10 name dca_build.pdb
- CHARMM>    !write coor pdb unit 10
+ CHARMM>    close unit 1
+ CLOLGU>  *****  WARNING  ***** Attempt to close unit that was not open.
+  
+ CHARMM>    close unit 10
+ CLOLGU>  *****  WARNING  ***** Attempt to close unit that was not open.
+  
+ CHARMM>    close unit 20
+ CLOLGU>  *****  WARNING  ***** Attempt to close unit that was not open.
+  
  CHARMM>     
   
-$$$$$$  New timer profile $$$$$
- Total time                      0.16 Other:            0.00
+ CHARMM>     
+  
+ CHARMM>    read sequence DECA 2
+  
+ CHARMM>    generate DECA
+ NO PATCHING WILL BE DONE ON THE FIRST RESIDUE
+ NO PATCHING WILL BE DONE ON THE LAST  RESIDUE
+ AUTGEN: Autogenerating specified angles and dihedrals.
+ GENPSF> Segment   2 has been generated. Its identifier is DECA.
+ PSFSUM> PSF modified: NONBOND lists and IMAGE atoms cleared.
+ PSFSUM> Summary of the structure file counters :
+         Number of segments      =        2   Number of residues   =        3
+         Number of atoms         =       95   Number of groups     =       27
+         Number of bonds         =       92   Number of angles     =      173
+         Number of dihedrals     =      238   Number of impropers  =        3
+         Number of cross-terms   =        0   Number of autogens   =        0
+         Number of HB acceptors  =        0   Number of HB donors  =        0
+         Number of NB exclusions =        0   Total charge =   -1.00000
+  
+ CHARMM>     
+  
+ CHARMM>     
+  
+ CHARMM>    ic generate
 
-                    NORMAL TERMINATION BY END OF FILE
-                    NO WARNINGS WERE ISSUED
+               Generation complete. New IC table entries:
+
+   N     I       J       K       L   R(I(J/K)) T(I(JK/KJ)) PHI   T(JKL)   R(KL)
+
+   29   1 C2    1 O1    1 *C1   1 O2     0.0000    0.00  180.00    0.00   0.0000
+   30   1 O1    1 C1    1 C2    1 C3     0.0000    0.00  180.00    0.00   0.0000
+   31   1 C3    1 C1    1 *C2   1 H2R    0.0000    0.00  120.00    0.00   0.0000
+   32   1 H2R   1 C1    1 *C2   1 H2S    0.0000    0.00 -120.00    0.00   0.0000
+   33   1 C1    1 C2    1 C3    1 C4     0.0000    0.00  180.00    0.00   0.0000
+   34   1 C4    1 C2    1 *C3   1 H3R    0.0000    0.00  120.00    0.00   0.0000
+   35   1 H3R   1 C2    1 *C3   1 H3S    0.0000    0.00 -120.00    0.00   0.0000
+   36   1 C2    1 C3    1 C4    1 C5     0.0000    0.00  180.00    0.00   0.0000
+   37   1 C5    1 C3    1 *C4   1 H4R    0.0000    0.00  120.00    0.00   0.0000
+   38   1 H4R   1 C3    1 *C4   1 H4S    0.0000    0.00 -120.00    0.00   0.0000
+   39   1 C3    1 C4    1 C5    1 C6     0.0000    0.00  180.00    0.00   0.0000
+   40   1 C6    1 C4    1 *C5   1 H5R    0.0000    0.00  120.00    0.00   0.0000
+   41   1 H5R   1 C4    1 *C5   1 H5S    0.0000    0.00 -120.00    0.00   0.0000
+   42   1 C4    1 C5    1 C6    1 C7     0.0000    0.00  180.00    0.00   0.0000
+   43   1 C7    1 C5    1 *C6   1 H6R    0.0000    0.00  120.00    0.00   0.0000
+   44   1 H6R   1 C5    1 *C6   1 H6S    0.0000    0.00 -120.00    0.00   0.0000
+   45   1 C5    1 C6    1 C7    1 C8     0.0000    0.00  180.00    0.00   0.0000
+   46   1 C8    1 C6    1 *C7   1 H7R    0.0000    0.00  120.00    0.00   0.0000
+   47   1 H7R   1 C6    1 *C7   1 H7S    0.0000    0.00 -120.00    0.00   0.0000
+   48   1 C6    1 C7    1 C8    1 C9     0.0000    0.00  180.00    0.00   0.0000
+   49   1 C9    1 C7    1 *C8   1 H8R    0.0000    0.00  120.00    0.00   0.0000
+   50   1 H8R   1 C7    1 *C8   1 H8S    0.0000    0.00 -120.00    0.00   0.0000
+   51   1 C7    1 C8    1 C9    1 C10    0.0000    0.00  180.00    0.00   0.0000
+   52   1 C10   1 C8    1 *C9   1 H9R    0.0000    0.00  120.00    0.00   0.0000
+   53   1 H9R   1 C8    1 *C9   1 H9S    0.0000    0.00 -120.00    0.00   0.0000
+   54   1 C8    1 C9    1 C10   1 H10R   0.0000    0.00  180.00    0.00   0.0000
+   55   1 H10R  1 C9    1 *C10  1 H10S   0.0000    0.00  120.00    0.00   0.0000
+   56   1 H10R  1 C9    1 *C10  1 H10T   0.0000    0.00 -120.00    0.00   0.0000
+   57   2 H1    2 O1    2 C1    2 C2     0.0000    0.00  180.00    0.00   0.0000
+   58   2 C2    2 O1    2 *C1   2 O2     0.0000    0.00  180.00    0.00   0.0000
+   59   2 O1    2 C1    2 C2    2 C3     0.0000    0.00  180.00    0.00   0.0000
+   60   2 C3    2 C1    2 *C2   2 H2R    0.0000    0.00  120.00    0.00   0.0000
+   61   2 H2R   2 C1    2 *C2   2 H2S    0.0000    0.00 -120.00    0.00   0.0000
+   62   2 C1    2 C2    2 C3    2 C4     0.0000    0.00  180.00    0.00   0.0000
+   63   2 C4    2 C2    2 *C3   2 H3R    0.0000    0.00  120.00    0.00   0.0000
+   64   2 H3R   2 C2    2 *C3   2 H3S    0.0000    0.00 -120.00    0.00   0.0000
+   65   2 C2    2 C3    2 C4    2 C5     0.0000    0.00  180.00    0.00   0.0000
+   66   2 C5    2 C3    2 *C4   2 H4R    0.0000    0.00  120.00    0.00   0.0000
+   67   2 H4R   2 C3    2 *C4   2 H4S    0.0000    0.00 -120.00    0.00   0.0000
+   68   2 C3    2 C4    2 C5    2 C6     0.0000    0.00  180.00    0.00   0.0000
+   69   2 C6    2 C4    2 *C5   2 H5R    0.0000    0.00  120.00    0.00   0.0000
+   70   2 H5R   2 C4    2 *C5   2 H5S    0.0000    0.00 -120.00    0.00   0.0000
+   71   2 C4    2 C5    2 C6    2 C7     0.0000    0.00  180.00    0.00   0.0000
+   72   2 C7    2 C5    2 *C6   2 H6R    0.0000    0.00  120.00    0.00   0.0000
+   73   2 H6R   2 C5    2 *C6   2 H6S    0.0000    0.00 -120.00    0.00   0.0000
+   74   2 C5    2 C6    2 C7    2 C8     0.0000    0.00  180.00    0.00   0.0000
+   75   2 C8    2 C6    2 *C7   2 H7R    0.0000    0.00  120.00    0.00   0.0000
+   76   2 H7R   2 C6    2 *C7   2 H7S    0.0000    0.00 -120.00    0.00   0.0000
+   77   2 C6    2 C7    2 C8    2 C9     0.0000    0.00  180.00    0.00   0.0000
+   78   2 C9    2 C7    2 *C8   2 H8R    0.0000    0.00  120.00    0.00   0.0000
+   79   2 H8R   2 C7    2 *C8   2 H8S    0.0000    0.00 -120.00    0.00   0.0000
+   80   2 C7    2 C8    2 C9    2 C10    0.0000    0.00  180.00    0.00   0.0000
+   81   2 C10   2 C8    2 *C9   2 H9R    0.0000    0.00  120.00    0.00   0.0000
+   82   2 H9R   2 C8    2 *C9   2 H9S    0.0000    0.00 -120.00    0.00   0.0000
+   83   2 C8    2 C9    2 C10   2 H10R   0.0000    0.00  180.00    0.00   0.0000
+   84   2 H10R  2 C9    2 *C10  2 H10S   0.0000    0.00  120.00    0.00   0.0000
+   85   2 H10R  2 C9    2 *C10  2 H10T   0.0000    0.00 -120.00    0.00   0.0000
+   86   3 H1    3 O1    3 C1    3 C2     0.0000    0.00  180.00    0.00   0.0000
+   87   3 C2    3 O1    3 *C1   3 O2     0.0000    0.00  180.00    0.00   0.0000
+   88   3 O1    3 C1    3 C2    3 C3     0.0000    0.00  180.00    0.00   0.0000
+   89   3 C3    3 C1    3 *C2   3 H2R    0.0000    0.00  120.00    0.00   0.0000
+   90   3 H2R   3 C1    3 *C2   3 H2S    0.0000    0.00 -120.00    0.00   0.0000
+   91   3 C1    3 C2    3 C3    3 C4     0.0000    0.00  180.00    0.00   0.0000
+   92   3 C4    3 C2    3 *C3   3 H3R    0.0000    0.00  120.00    0.00   0.0000
+   93   3 H3R   3 C2    3 *C3   3 H3S    0.0000    0.00 -120.00    0.00   0.0000
+   94   3 C2    3 C3    3 C4    3 C5     0.0000    0.00  180.00    0.00   0.0000
+   95   3 C5    3 C3    3 *C4   3 H4R    0.0000    0.00  120.00    0.00   0.0000
+   96   3 H4R   3 C3    3 *C4   3 H4S    0.0000    0.00 -120.00    0.00   0.0000
+   97   3 C3    3 C4    3 C5    3 C6     0.0000    0.00  180.00    0.00   0.0000
+   98   3 C6    3 C4    3 *C5   3 H5R    0.0000    0.00  120.00    0.00   0.0000
+   99   3 H5R   3 C4    3 *C5   3 H5S    0.0000    0.00 -120.00    0.00   0.0000
+  100   3 C4    3 C5    3 C6    3 C7     0.0000    0.00  180.00    0.00   0.0000
+  101   3 C7    3 C5    3 *C6   3 H6R    0.0000    0.00  120.00    0.00   0.0000
+  102   3 H6R   3 C5    3 *C6   3 H6S    0.0000    0.00 -120.00    0.00   0.0000
+  103   3 C5    3 C6    3 C7    3 C8     0.0000    0.00  180.00    0.00   0.0000
+  104   3 C8    3 C6    3 *C7   3 H7R    0.0000    0.00  120.00    0.00   0.0000
+  105   3 H7R   3 C6    3 *C7   3 H7S    0.0000    0.00 -120.00    0.00   0.0000
+  106   3 C6    3 C7    3 C8    3 C9     0.0000    0.00  180.00    0.00   0.0000
+  107   3 C9    3 C7    3 *C8   3 H8R    0.0000    0.00  120.00    0.00   0.0000
+  108   3 H8R   3 C7    3 *C8   3 H8S    0.0000    0.00 -120.00    0.00   0.0000
+  109   3 C7    3 C8    3 C9    3 C10    0.0000    0.00  180.00    0.00   0.0000
+  110   3 C10   3 C8    3 *C9   3 H9R    0.0000    0.00  120.00    0.00   0.0000
+  111   3 H9R   3 C8    3 *C9   3 H9S    0.0000    0.00 -120.00    0.00   0.0000
+  112   3 C8    3 C9    3 C10   3 H10R   0.0000    0.00  180.00    0.00   0.0000
+  113   3 H10R  3 C9    3 *C10  3 H10S   0.0000    0.00  120.00    0.00   0.0000
+  114   3 H10R  3 C9    3 *C10  3 H10T   0.0000    0.00 -120.00    0.00   0.0000
+  
+ CHARMM>    ic param
+  
+ CHARMM>    ic seed 1 C1 1 C2 1 C3 !needs three atoms to generate box
+
+      ***** LEVEL  0 WARNING FROM <SEED> *****
+      ***** COORDINATES ALREADY KNOWN.
+      ******************************************
+      BOMLEV (  0) IS REACHED - TERMINATING. WRNLEV IS  5
+
+
+                                                  
+                            /---------\           
+                           /           \          
+                          /             \         
+                         /               \        
+                         !  XXXX   XXXX  !        
+                         !  XXXX   XXXX  !        
+                         !  XXX     XXX  !        
+                         !       X       !        
+                          --\   XXX   /--         
+                           ! !  XXX  ! !          
+                           ! !       ! !          
+                           ! I I I I I !          
+                           !  I I I I  !          
+                            \         /           
+                             --     --            
+                               \---/              
+                        XXX             XXX       
+                       XXXX             XXXX      
+                       XXXXX           XXXXX      
+                          XXX         XXX         
+                            XXX     XXX           
+                               XXXXX              
+                              XXX XXX             
+                            XXX     XXX           
+                          XXX         XXX         
+                       XXXXX           XXXXX      
+                       XXXX             XXXX      
+                        XXX             XXX       
+                                                  
+                                                  
+ Execution terminated due to the detection of a fatal error.
+
+                    ABNORMAL TERMINATION
+                    MOST SEVERE WARNING WAS AT LEVEL  0
 
                     $$$$$ JOB ACCOUNTING INFORMATION $$$$$
-                     ELAPSED TIME:     0.16  SECONDS 
+                     ELAPSED TIME:     0.10  SECONDS 
                          CPU TIME:     0.09  SECONDS 

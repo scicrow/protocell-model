@@ -5,7 +5,7 @@
        Copyright(c) 1984-2023  President and Fellows of Harvard College
                               All Rights Reserved
   Current operating system: Linux-4.4.0-19041-Microsoft(x86_64)@C-A0042747.st   
-                 Created on  2/26/24 at 16:25:25 by user: thomas      
+                 Created on  3/1/24 at 16:37:20 by user: thomas      
 
             Maximum number of ATOMS:    360720, and RESidues:      120240
  RDTITL> * READS THE DCA RESIDUE FROM THE STREAM TOPOLOGY FILE AND WRITES A PDB CONSISTING
@@ -59,9 +59,9 @@
  CHARMM>     
   
  CHARMM>    !CUSTOM TOPOLOGY THOMAS CROW 2023 includes DCA and DCN
- CHARMM>    stream top_dca.str
- VOPEN> Attempting to open::top_dca.str::
- OPNLGU> Unit 98 opened for READONLY access to top_dca.str
+ CHARMM>    stream top_deca.str
+ VOPEN> Attempting to open::top_deca.str::
+ OPNLGU> Unit 98 opened for READONLY access to top_deca.str
 
                     INPUT STREAM SWITCHING TO UNIT    98
  RDTITL> * TOPOLOGY FILE FOR DECANOIC ACID AND DECANOATE
@@ -95,10 +95,6 @@
 
                     RETURNING TO INPUT STREAM     5
   
- CHARMM>     
-  
- CHARMM>    !read sequence DECA 1
- CHARMM>    !generate DECA
  CHARMM>     
   
  CHARMM>    read sequence DECN 1
@@ -209,13 +205,11 @@
   
  CHARMM>     
   
- CHARMM>     
-  
- CHARMM>    open write card unit 10 name dcn_build.psf
+ CHARMM>    open write card unit 10 name ./lipid_lib/decn.psf
  OPNLGU> Unit already open. The old file will be closed first.
  VCLOSE: Closing unit   10 with status "KEEP"
- VOPEN> Attempting to open::dcn_build.psf::
- OPNLGU> Unit 10 opened for WRITE access to dcn_build.psf
+ VOPEN> Attempting to open::./lipid_lib/decn.psf::
+ OPNLGU> Unit 10 opened for WRITE access to ./lipid_lib/decn.psf
   
  CHARMM>    write psf unit 10
  RDTITL>  
@@ -224,11 +218,11 @@
   
  CHARMM>     
   
- CHARMM>    open write card unit 20 name dcn_build.cor
+ CHARMM>    open write card unit 20 name ./lipid_lib/decn.crd
  OPNLGU> Unit already open. The old file will be closed first.
  VCLOSE: Closing unit   20 with status "KEEP"
- VOPEN> Attempting to open::dcn_build.cor::
- OPNLGU> Unit 20 opened for WRITE access to dcn_build.cor
+ VOPEN> Attempting to open::./lipid_lib/decn.crd::
+ OPNLGU> Unit 20 opened for WRITE access to ./lipid_lib/decn.crd
   
  CHARMM>    write coor card unit 20
  RDTITL>  
@@ -237,16 +231,12 @@
   
  CHARMM>     
   
- CHARMM>    !open write card unit 10 name dcn_build.pdb
- CHARMM>    !write coor pdb unit 10
- CHARMM>     
-  
 $$$$$$  New timer profile $$$$$
- Total time                      0.17 Other:            0.00
+ Total time                      0.12 Other:            0.00
 
                     NORMAL TERMINATION BY END OF FILE
                     NO WARNINGS WERE ISSUED
 
                     $$$$$ JOB ACCOUNTING INFORMATION $$$$$
-                     ELAPSED TIME:     0.17  SECONDS 
-                         CPU TIME:     0.09  SECONDS 
+                     ELAPSED TIME:     0.12  SECONDS 
+                         CPU TIME:     0.11  SECONDS 
