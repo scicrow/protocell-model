@@ -1,0 +1,1 @@
+{"systype":"solution","dimensions":[],"input":["gromacs"],"forcefield":{"type":"c36","files":["default"],"custom":["uploaded_files\/top_deca.str"]},"hmr":false}

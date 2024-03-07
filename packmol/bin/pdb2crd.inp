@@ -1,0 +1,45 @@
+! CHARMM printing and error tolerence
+
+PRNLev 1
+BOMLev -5
+
+! Read standard topology and parameter files
+
+OPEN READ CARD UNIT 11 NAME "/home/protocell-model/DCA_CHARMM/toppar/top_tom_lipid.rtf"
+READ RTF CARD UNIT 11
+CLOSE UNIT 11
+
+OPEN READ CARD UNIT 21 NAME "/home/protocell-model/DCA_CHARMM/toppar/par_all36_lipid.prm"
+READ PARAMETER CARD UNIT 21
+CLOSE UNIT 21
+
+STREAM "/home/protocell-model/DCA_CHARMM/top_deca.str"
+READ PARAMETER CARD UNIT 31
+CLOSE UNIT 31
+
+! Generate the PSF for met-enk
+
+!READ SEQUence CARD
+!*
+!5
+!TYR GLY GLY PHE MET
+!GENErate FIRS NTER LAST CTER SETUp
+
+! Read in the pdb format input file into the COOR array
+
+OPEN UNIT 20 NAME bilayer_100mm_reorder.pdb READ CARD
+READ COOR UNIT 20 PDB
+CLOSE UNIT 20
+
+! Fill and setup the internal coordinate tables
+
+IC FILL PRESERVE
+IC PARAMETERS
+IC PURGE
+IC BUILD
+
+! Write the COOR array out in crd format
+
+OPEN UNIT 20 NAME bilayer_100mm_reorder.crd WRITE CARD
+WRITE COOR UNIT 20 CARD
+CLOSE UNIT 20

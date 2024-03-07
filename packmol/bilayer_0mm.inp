@@ -1,0 +1,81 @@
+# https://m3g.github.io/packmol/userguide.shtml
+
+tolerance 2.0 
+filetype pdb
+output bilayer_0mm.pdb
+
+
+structure decn.pdb 
+  number 72
+  inside box 1. 1. 90. 53. 53. 110.
+  atoms 31
+    below plane 0. 0. 1. 95.
+  end atoms
+  atoms 2
+    over plane 0. 0. 1. 107.
+  end atoms
+end structure
+
+structure decn.pdb 
+  number 72
+  inside box 1. 1. 74. 53. 53. 96.
+  atoms 2
+    below plane 0. 0. 1. 79.
+  end atoms
+  atoms 31
+    over plane 0. 0. 1. 91.
+  end atoms
+end structure
+
+structure deca.pdb 
+  number 72
+  inside box 1. 1. 90. 53. 53. 110.
+  atoms 28
+    below plane 0. 0. 1. 95.
+  end atoms
+  atoms 1
+    over plane 0. 0. 1. 107.
+  end atoms
+end structure  
+
+structure deca.pdb 
+  number 72
+  inside box 1. 1. 74. 53. 53. 96.
+  atoms 1
+    below plane 0. 0. 1. 79.
+  end atoms
+  atoms 28
+    over plane 0. 0. 1. 91.
+  end atoms
+end structure 
+
+
+structure WAT.pdb 
+  number 5760
+  inside box 1. 1. 1. 53. 53. 77.
+end structure
+
+structure WAT.pdb
+  number 5760
+  inside box 1. 1. 109. 53. 53. 185.
+end structure
+
+structure Na+_amber.pdb 
+  number 83
+  inside box 1. 1. 1. 53. 53. 77.
+end structure
+
+structure Na+_amber.pdb
+  number 83
+  inside box 1. 1. 109. 53. 53. 185.
+end structure
+
+structure Cl-_amber.pdb 
+  number 11
+  inside box 1. 1. 1. 53. 53. 77.
+end structure
+
+structure Cl-_amber.pdb
+  number 11
+  inside box 1. 1. 109. 53. 53. 185.
+end structure
