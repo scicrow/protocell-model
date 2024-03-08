@@ -7,6 +7,15 @@
 ;; CHARMM FF in GROMACS format
 ;;
 
+; The force field files to be included
+#include "CLA.itp"
+#include "DECA.itp"
+#include "DECN.itp"
+#include "SOD.itp"
+#include "TIP3.itp"
+
+[ system ]
+Decanoic acid/-ate lipid bilayer in 100mM sodium chloride TIP3 water. Built from CHARMM FFs.
 
 [ defaults ]
 ; nbfunc	comb-rule	gen-pairs	fudgeLJ	fudgeQQ
@@ -125,3 +134,12 @@
       X    CTL2      CL       X     9  1.800000e+02  2.092000e-01      6
       X    CTL2    CTL2       X     9  0.000000e+00  7.949600e-01      3
       X    CTL2    CTL3       X     9  0.000000e+00  6.694400e-01      3
+
+
+[ molecules ]
+;molecule name   nr
+ DECA
+ DECN
+ CLA
+ SOD
+ TIP3
