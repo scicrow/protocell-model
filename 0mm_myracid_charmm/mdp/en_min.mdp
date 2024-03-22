@@ -1,0 +1,19 @@
+integrator              = steep
+nsteps                  = 10000
+;emtol                   = 1000 removing emtol because it has caused issues with vacuums. expect emtol not reached messages for en_min
+emstep                  = 0.0001
+
+pbc                     = xyz
+rlist                   = 1.2
+nstlist                 = 1
+
+coulombtype             = PME
+rcoulomb                = 1.2
+vdwtype                 = cut-off
+vdw-modifier            = force-switch
+rvdw                    = 1.2
+rvdw-switch             = 1.0
+
+nstlog                  = 1
+nstenergy               = 1 
+nstxout-compressed      = 100

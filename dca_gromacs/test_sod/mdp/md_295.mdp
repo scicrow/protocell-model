@@ -1,0 +1,38 @@
+integrator              = md
+constraints             = h-bonds
+constraint-algorithm    = lincs
+dt                      = 0.002
+nsteps                  = 50000000
+nstcomm                 = 100
+
+pbc                     = xyz 
+periodic-molecules      = no
+rlist                   = 1.0 
+nstlist                 = 10
+ns-type                 = grid
+
+coulombtype             = PME 
+rcoulomb                = 1.0 
+cutoff-scheme           = verlet
+vdwtype                 = cut-off
+rvdw                    = 1.0 
+fourierspacing          = 0.12
+pme-order               = 6
+table-extension         = 1.6
+DispCorr                = EnerPres
+
+nstlog                  = 100000
+nstenergy               = 5000
+nstxout-compressed      = 5000
+
+Tcoupl                  =  nose-hoover
+tc-grps                 =  DCA_DCN TIP3_SOD_CLA
+tau_t                   =  1.0   1.0
+ref_t                   =  295.1 295.1
+pcoupl                  =  parrinello-rahman
+Pcoupltype              =  semiisotropic
+tau_p                   =  2.0
+compressibility         =  4.2e-5  4.2e-5
+ref_p                   =  1.01325 1.01325
+
+gen-vel                 = no
