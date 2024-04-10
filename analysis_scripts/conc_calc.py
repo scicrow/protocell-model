@@ -1,17 +1,17 @@
 #!/usr/bin/python
 
-W_atom = 11520
-K_atom = 21
-conc_305 = 0.1
-while(conc_305 < 0.5):
-    W_atom = W_atom - 2
-    K_atom = K_atom + 1
+W_atom = 14400
+salt_num = 0
+conc_305 = 0.0 #starting concentration, not including balancing ions
+while(conc_305 < 0.1): #change this float value to the concentration in mM that you want (here is 0.1mM)
+    W_atom = W_atom - 2 # removing two water ions as you're going to need a positive and negative ion replacement
+    salt_num = salt_num + 1
 
     avagadro = 6.022 * 10 ** 23
 
     #moles of each
     W_mol = W_atom / avagadro
-    K_mol = K_atom / avagadro
+    K_mol = salt_num / avagadro
     W_atom_mass = 18.01528 #g/mol
 
     W_mass = W_atom_mass * W_mol # result is grams
@@ -32,8 +32,8 @@ while(conc_305 < 0.5):
     conc_305 = K_mol / vol_W305 #mol/L
 
 decanoics = 288
-total_pot = K_atom + 144
-print ("number of water atoms at 305K is", W_atom, "number of salt ions is", K_atom)
+total_pot = salt_num + 144
+print ("number of water atoms at 305K is", W_atom, "number of salt ions is", salt_num)
 print ("total number of potassium ions is", total_pot)
 print ("ratio of lipids to water", decanoics / W_atom)
 print ("concentration of salt ions at 295K is:", conc_295, "mol/L")

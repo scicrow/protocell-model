@@ -1,0 +1,36 @@
+REMARK  READS THE DCA RESIDUE FROM THE STREAM TOPOLOGY FILE AND WRITES A PDB CONSISTIN
+REMARK  OF A SINGLE DCA MOLECULE                                                      
+REMARK   DATE:     3/ 5/24     17:19:15      CREATED BY USER: thomas                  
+ATOM      1  O1  DECN    1      -0.592  -1.113  -0.000  1.00  0.00      DECN
+ATOM      2  O2  DECN    1      -0.592   1.113   0.000  1.00  0.00      DECN
+ATOM      3  C1  DECN    1       0.000   0.000   0.000  1.00  0.00      DECN
+ATOM      4  C2  DECN    1       1.522   0.000   0.000  1.00  0.00      DECN
+ATOM      5  H2R DECN    1       1.897  -0.524  -0.905  1.00  0.00      DECN
+ATOM      6  H2S DECN    1       1.897  -0.524   0.905  1.00  0.00      DECN
+ATOM      7  C3  DECN    1       1.995   1.455   0.000  1.00  0.00      DECN
+ATOM      8  H3R DECN    1       1.590   1.958   0.904  1.00  0.00      DECN
+ATOM      9  H3S DECN    1       1.590   1.958  -0.904  1.00  0.00      DECN
+ATOM     10  C4  DECN    1       3.517   1.604   0.000  1.00  0.00      DECN
+ATOM     11  H4R DECN    1       3.922   1.101  -0.904  1.00  0.00      DECN
+ATOM     12  H4S DECN    1       3.922   1.101   0.904  1.00  0.00      DECN
+ATOM     13  C5  DECN    1       3.990   3.060   0.000  1.00  0.00      DECN
+ATOM     14  H5R DECN    1       3.586   3.563   0.904  1.00  0.00      DECN
+ATOM     15  H5S DECN    1       3.586   3.563  -0.904  1.00  0.00      DECN
+ATOM     16  C6  DECN    1       5.513   3.209   0.000  1.00  0.00      DECN
+ATOM     17  H6R DECN    1       5.918   2.706  -0.904  1.00  0.00      DECN
+ATOM     18  H6S DECN    1       5.918   2.706   0.904  1.00  0.00      DECN
+ATOM     19  C7  DECN    1       5.986   4.664   0.000  1.00  0.00      DECN
+ATOM     20  H7R DECN    1       5.581   5.167   0.904  1.00  0.00      DECN
+ATOM     21  H7S DECN    1       5.581   5.167  -0.904  1.00  0.00      DECN
+ATOM     22  C8  DECN    1       7.508   4.813   0.000  1.00  0.00      DECN
+ATOM     23  H8R DECN    1       7.913   4.310  -0.904  1.00  0.00      DECN
+ATOM     24  H8S DECN    1       7.913   4.310   0.904  1.00  0.00      DECN
+ATOM     25  C9  DECN    1       7.981   6.268   0.000  1.00  0.00      DECN
+ATOM     26  H9R DECN    1       7.571   6.766   0.904  1.00  0.00      DECN
+ATOM     27  H9S DECN    1       7.571   6.766  -0.904  1.00  0.00      DECN
+ATOM     28  C10 DECN    1       9.498   6.455   0.000  1.00  0.00      DECN
+ATOM     29 H10S DECN    1       9.940   5.983  -0.904  1.00  0.00      DECN
+ATOM     30 H10R DECN    1       9.938   5.976   0.901  1.00  0.00      DECN
+ATOM     31 H10T DECN    1       9.746   7.537  -0.007  1.00  0.00      DECN
+TER      32      DECN     1
+END
