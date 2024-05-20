@@ -3,50 +3,72 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import sys
+import pandas as pd
+
+xvg = "./295density.xvg"
 
 def xvg_read(xvg):
-    #reading the gromacs xvg file and pulling the coords
+    #reads a gromacs density xvg file and removes the comments and starting blurb to the file
     with open(xvg, 'r') as f:
-         out_read = f.readlines()
+        out_read = f.readlines()
+        clean_xvg = []
+        start_line = False
+        for line in out_read:
+            if start_line != True and line[0] != "@" and line[0] != "#":
+                start_line = True 
+                #print(line)
+            if start_line == True:
+                clean_xvg.append(line.strip().split())
+            
+        print(clean_xvg)
+
+    return (clean_xvg)
+
+def frame_xvg(clean_xvg):
+    #this makes dataframes (like csv files). not implemented
+    xvg_frame = pd.DataFrame(clean_xvg)
+    print(xvg_frame)
     
-    out_read = out_read[25:] #first 25 lines is junk text.
-    return (out_read)
 
 
-def run_pyplot(out_table, ions_list, lipid_list):
-    n = 0
-    for out in out_table:
-        data = np.loadtxt(out)
-        position = data[:,0]
-        dcadcn = data[:,1]
-        ions = data[:,2]
-        plt.plot(position, dcadcn, label = lipid_list[n])
-        plt.plot(position, ions, label = ions_list[n])
-        n = n + 1
+def run_pyplot(clean_xvg):
+    position = []
+    lipid = []
+    pot = []
+    cla = []
+    tip3p = [] 
+    
+    for line in clean_xvg:
+        position.append(float(line[0]))
+        lipid.append(float(line[1]))
+        pot.append(float(line[2]))
+        cla.append(float(line[3]))
+        tip3p.append(float(line[4]))
+        
+
+    plt.plot(position, lipid)
+    plt.plot(position, pot)
+    plt.plot(position, cla)
+    plt.plot(position, tip3p)
+        
+    x_min = min(position)
+    x_max = max(position)
+    y_max = max(tip3p)   
+    print("min is:", x_min, "max is:", x_max)
 
     plt.xlabel('Distance (nm)', fontsize = 'large')
     plt.ylabel('Density (kg/m^3)', fontsize = 'large')
-    plt.xlim(-2, 2)
-    plt.ylim(0, 1000)
+    #plt.xlim(x_min, x_max)
+    #plt.ylim(-10, 10)
     plt.suptitle('Density of lipids and Merz ions', fontsize = '16')
     plt.legend(fontsize = 'large')
     plt.show()
     
-path_name = ["/home/thomas/md-runs-archive/MerzFF/01-19-15-10_Kions/", "/home/thomas/md-runs-archive/MerzFF/01-19-15-16_NaMerz/"]
-temp_name = ["density_295K.xvg", "density_305K.xvg"]
-path_array = [path + temp for path in path_name for temp in temp_name]
 #print(path_array)
 
 
-ions_list = ['potassium ions @ 295K', 'potassium ions @ 305K', 'sodium ions @ 295K', 'sodium ions @ 305K']
-lipid_list = ['DCA/DCN @ 295K (K ions)', 'DCA/DCN @ 305K (K ions)', 'DCA/DCN @ 295K (Na ions)', 'DCA/DCN @ 305K (Na ions)']
 
-out_table = []
-for x in path_array:
-    out = xvg_read(x)
-    out_table.append(out)
-
-run_pyplot(out_table, ions_list, lipid_list)
+clean_xvg = (xvg_read(xvg))
+run_pyplot(clean_xvg)
 #print(data_table[0])
-
 
