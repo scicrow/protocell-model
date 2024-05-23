@@ -5,7 +5,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sys
 
-xvg = "295traj_myr.xvg"
+xvg = sys.argv[1]
+title = sys.argv[2]
 
 def xvg_read(xvg):
     #reads a gromacs trajectory xvg file and removes the comments and starting blurb to the file
@@ -67,10 +68,8 @@ def apl_function (clean_xvg):
     return(time, apl_list, time_average, apl_average)
     
 
-def traj_pyplot(time, apl_list, xvg, time_average, apl_average):
-    title = xvg.strip(".xvg")
+def traj_pyplot(time, apl_list, time_average, apl_average, title):
     figure_file = title + ".png"
-    title = "Mass density profile of C14 acid in 100 mM KCl @ 295 K"
     
     area_per_lipid =  plt.plot(time, apl_list, label="Area per Lipid")
     average_1000 = plt.plot(time_average, apl_average, label="Average APL per ns")
@@ -88,19 +87,9 @@ def traj_pyplot(time, apl_list, xvg, time_average, apl_average):
     plt.ylim(0, 0.4)
     plt.suptitle(title, fontsize = '16')
     plt.legend(fontsize = 'large')
-    plt.show()
-    
-
-#radial_distribution_function ();
-	#do I need this? https://en.wikipedia.org/wiki/Radial_distribution_function
-
-
-
-#def actual_analysis ():
-# just copy pasting the relevant commands that make it work. noteL these are bash commands. 
-#gmx traj -s premd2.gro -n index.ndx -f md_295.xtc -z -y -x -ob md295_box
-#gmx traj -s md295.gro -n index.ndx -f md_305.xtc -z -y -x -ob md305_box
+    plt.savefig(figure_title)
+   
 
 clean_xvg = xvg_read(xvg)
 time, apl_list, time_average, apl_average = apl_function(clean_xvg)
-traj_pyplot(time, apl_list, xvg, time_average, apl_average)
+traj_pyplot(time, apl_list, xvg, time_average, apl_average, title)
