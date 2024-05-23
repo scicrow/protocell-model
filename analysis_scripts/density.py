@@ -5,7 +5,8 @@ import matplotlib.pyplot as plt
 import sys
 import pandas as pd
 
-xvg = "./295density.xvg"
+xvg = sys.argv[1]
+print("input file is:", xvg) 
 
 def xvg_read(xvg):
     #reads a gromacs density xvg file and removes the comments and starting blurb to the file
@@ -24,6 +25,8 @@ def xvg_read(xvg):
 
     return (clean_xvg)
 
+
+
 def frame_xvg(clean_xvg):
     #this makes dataframes (like csv files). not implemented
     xvg_frame = pd.DataFrame(clean_xvg)
@@ -31,7 +34,12 @@ def frame_xvg(clean_xvg):
     
 
 
-def run_pyplot(clean_xvg):
+def run_pyplot(clean_xvg, xvg):
+    title = xvg.strip(".xvg")
+    figure_file = title + ".png"
+    title = "C14 mass density profile of: " + title
+
+    print(figure_file)
     position = []
     lipid = []
     pot = []
@@ -46,11 +54,12 @@ def run_pyplot(clean_xvg):
         tip3p.append(float(line[4]))
         
 
-    plt.plot(position, lipid)
-    plt.plot(position, pot)
-    plt.plot(position, cla)
-    plt.plot(position, tip3p)
-        
+    lipid_line =  plt.plot(position, lipid, label='Lipids')
+    pot_line = plt.plot(position, pot, label='Potassium')
+    cla_line = plt.plot(position, cla, label='Chloride')
+    sol_line = plt.plot(position, tip3p, label='Solution')
+    plt.legend()    
+    
     x_min = min(position)
     x_max = max(position)
     y_max = max(tip3p)   
@@ -60,7 +69,7 @@ def run_pyplot(clean_xvg):
     plt.ylabel('Density (kg/m^3)', fontsize = 'large')
     #plt.xlim(x_min, x_max)
     #plt.ylim(-10, 10)
-    plt.suptitle('Density of lipids and Merz ions', fontsize = '16')
+    plt.suptitle(title, fontsize = '16')
     plt.legend(fontsize = 'large')
     plt.show()
     
@@ -69,6 +78,5 @@ def run_pyplot(clean_xvg):
 
 
 clean_xvg = (xvg_read(xvg))
-run_pyplot(clean_xvg)
-#print(data_table[0])
+run_pyplot(clean_xvg, xvg)
 
