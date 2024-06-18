@@ -50,32 +50,32 @@ structure deca.pdb
 end structure 
 
 
-structure WAT.pdb 
+structure tip3.pdb 
   number 5760
   inside box 1. 1. 1. 53. 53. 77.
 end structure
 
-structure WAT.pdb
+structure tip3.pdb
   number 5760
   inside box 1. 1. 109. 53. 53. 185.
 end structure
 
-structure Na+_amber.pdb 
-  number 83
+structure pot.pdb 
+  number 111
   inside box 1. 1. 1. 53. 53. 77.
 end structure
 
-structure Na+_amber.pdb
-  number 83
+structure pot.pdb
+  number 111
   inside box 1. 1. 109. 53. 53. 185.
 end structure
 
-structure Cl-_amber.pdb 
-  number 11
+structure cla.pdb 
+  number 39
   inside box 1. 1. 1. 53. 53. 77.
 end structure
 
-structure Cl-_amber.pdb
-  number 11
+structure cla.pdb
+  number 39
   inside box 1. 1. 109. 53. 53. 185.
 end structure
