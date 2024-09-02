@@ -1,21 +1,48 @@
 #!/bin/python
 
-# commands to run this script: . run_grompp.sh; test_run teststring 
-# this will run this script, run the test_run function and have the working directory as $1 and teststring as input $2
+# commands to run this script: . run_grompp.sh; test_run teststring
 
 import os
 import subprocess
+import yaml
+import argparse
 
 # Load some modules from the bash script
 
 path_d = os.getcwd()
 print(path_d)
-top_in = f"{path_d}/topol.top"
-coor_in = [] # coord argument in 
+
 coor_path = f"{path_d}/{coor_in}"
 temp_in = [] #examples: premd1 premd2 md_295 md_305... md_375
 
-gromacs = "gmx_mpi/gmx" #fix this to recognise native gromacs
+
+parser = argparse.ArgumentParser(description='Receive gromacs inputs')
+parser.add_argument('-c', help='Include coordinate file. Expected .gro or .pdb')
+args = parser.parse_args()
+coor_in = args.c
+
+parser.add_argument('-t', help='Specify the run temperature. Examples: premd1 premd2 md_295 md_305... md_375')
+args = parser.parse_args()
+temp_in = args.t
+
+
+
+
+def configure_environment ():
+    #Loads local configuration file. Must exist in same directory.
+    # Only have this run if global variable doesn't exist.
+    with open("./config.yaml", "r", encoding="utf-8") as config_file:
+        gromacs = yaml.safe_load(config_file, Loader=yaml.FullLoader)
+        print ("Loading local environment...\n"
+               "Gromacs version is...", gromacs[0]['Local_environment']['gromacs_version'])
+        gmx_command = str(gromacs[0]['Local_environment']['gromacs_command'])
+        config_file.close()
+    
+    #print ("Gromacs run command is... ", gromacs[0]['Local_environment']['gromacs_command'])
+    #print ("Gromacs command is", gmx_command)
+    return(gmx_command)
+
+
 
 #def min():
 #    #first minimization run 
@@ -37,36 +64,48 @@ gromacs = "gmx_mpi/gmx" #fix this to recognise native gromacs
 #
 #    return()
 #
-def run_grompp(path_d):
-#
-#    
+def run_grompp(path_d, gmx_command):
+
     #needs minimizations completed
-    try: 
+    mdp_one = f"{path_d}/mdp/{temp_in}.mdp"
+    coor_one = f"{path_d}/{temp_in}.gro"
+    index_one = f"{path_d}/index.ndx"
+    out_one = f"{path_d}/{temp_in}.tpr"
+    top_in = f"{path_d}/topol.top"
     
-        mdp_one = f"{path_d}/mdp/{temp_in}.mdp"
-        coor_one = f"{path_d}/{temp_in}.gro"
-        index_one = f"{path_d}/index.ndx"
-        out_one = f"{path_d}/{temp_in}.tpr"
-	
-	
-    #    input_list=[$mdp_one, $coor_one, $top_in, $index_one]
-	
-	
-        subprocess.run([gromacs, 'grompp',
-        '-f', mdp_one,  
-        '-c', coor_one, 
-        '-r', coor_one,
-        '-n', index_one,
-        '-o', out_one, 
-        '-p', top_in
-        ], check = True)
-        
-    except Exception as e:
-        print("Failed due to error(s): \n", e)
+    # used to log missing files and quit function
+    error_var = 0 
+
+    required_files = [mdp_one, coor_one, top_in, index_one, top_in]
+
+# Check if all required files exist
+    for file_path in required_files:
+        if not os.path.exists(file_path):
+            # Exit the script with an error code
+            print(f"Error: Required file '{file_path}' not found.")
+            error_var = error_var + 1
+            
+    if error_var == 0:
+        gromacs_run = f"{gmx_command} grompp -f {mdp_one} -c {coor_one}"
+        "-r {coor_one} -n {index_one} -o {out_one} -p {top_in}"
+        print(gromacs_run)
+        #subprocess.run(gromacs_run, check = True)
+    else:
+        print("Grompp failed to complete. Check errors.")
+    
+    #subprocess.run([gromacs, 'grompp',
+    #'-f', mdp_one,  
+    #'-c', coor_one, 
+    #'-r', coor_one,
+    #'-n', index_one,
+    #'-o', out_one, 
+    #'-p', top_in
+    #], check = True)
+
         
     return()
     
-run_grompp(path_d)
+run_grompp(path_d, "gmx")
 
 
 #def file_checker (file_in):

@@ -1,0 +1,6 @@
+---
+
+- Local_environment:
+    gromacs_version: "2021.4-Ubuntu-2021.4-2"
+    gromacs_command: "gmx"
+    charmm_library_path:: "pathname"
